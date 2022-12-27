@@ -36,7 +36,8 @@ header, footer{
   color: ivory;
 }
 
-header{
+header a, a:hover, a:visited, a:active{
+  color: ivory;
 }  
 
 footer{
@@ -44,7 +45,7 @@ footer{
   align-items: center;
 }
 
-footer, header a, a:hover, a:visited, a:active{
+footer a, a:hover, a:visited, a:active{
   color: ivory;
 }
 
@@ -60,21 +61,19 @@ h1{
   }
 }
 
-/*
 button{
   background-color: rgb(56, 56, 56);
   color: ivory;
   padding: 6px 10px;
-  
+  /*
   max-width: 120px; 
   word-break: normal;
-
+  */
   text-align: center;
   border-style: none;
   border-radius: 8px;
   box-shadow: 1px 1px 1px 1px ivory;
 }
-*/
 
 .calculator{
   display: flex;
