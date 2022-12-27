@@ -8,12 +8,55 @@
 body{
   font-family: 'Quicksand', sans-serif;
   font-size: 18px;
-  box-sizing: border-box;
   background-color: ivory;
+  box-sizing: border-box;
 }
+/* FOR DEV ONLY */
+div{
+  border: 1px solid red;
+}
+
 
 ol, li {
   list-style: none;
+}
+
+main {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+}
+
+header, footer{
+  display: flex;
+  padding: 0px 20px;
+  min-height: 10vh;
+  background-color:rgb(56, 56, 56);
+  color: ivory;
+}
+
+header{
+}  
+
+footer{
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer a, a:hover, a:visited, a:active{
+  color: ivory;
+}
+
+h1{
+  font-size: 1.5rem;
+  padding: 20px;
+  text-align: center;
+}
+
+@media screen and (min-width: 480px){
+  h1 {
+    text-align: left;
+  }
 }
 
 button{
@@ -27,30 +70,80 @@ button{
   text-align: center;
   border-style: none;
   border-radius: 8px;
-  box-shadow: 2px 2px 2px ivory;
+  box-shadow: 1px 1px 1px 1px ivory;
 }
 
 .calculator{
   display: flex;
+  flex-direction: column;
   gap: 8px;
-  padding: 10px;
-  max-width: 600px;
-  min-width: 300px;
-  max-height: 800px;
-  min-height: 400px;
+  padding: 20px;
+  width: 335px;
+  height: 480px;
+  margin: 20px;
   background-color: rgb(28, 75, 137);
   color: rgb(56, 56, 56);
 }
 
 .calc-header{
+  display: flex;
   max-width: 100%;
-  padding: 10px;
+  height: 36px;
+  flex: 1;
+  align-items: center;
+  text-align: center;
+}
+
+.brand{
+  flex: 1;
+  color: ivory;
+  opacity: .75;
+}
+
+.solar-panel{
   flex: 1;
 }
 
+.solar-panel img{
+  max-width: 100%;
+  height: 36px;
+  border: 2px solid rgb(56, 56, 56);
+  border-radius: 5px;
+}
+
+
 .numpad{
   display: flex;
-  flex: 4 0 auto;
+  flex: 1;
   justify-content: space-evenly;
   align-items: center;
+}
+
+.row-1, .row-2, .row-3, .row-4, .row-5 {
+  display: flex;
+  gap: 6px;
+}
+
+.numkey{
+  flex: 1;
+  background-color:rgb(56, 56, 56);
+  color: ivory;
+  font-size: 30px;
+  width: 64px;
+  height: 72px;
+}
+
+.screen{
+ flex: 4.25;
+}
+
+.operator{
+  flex: 1;
+  background-color: orange;
+}
+
+.operator__red{
+  flex: 1;
+  background-color: red;
+  height: 72px;
 }

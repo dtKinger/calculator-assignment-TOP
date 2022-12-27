@@ -9,15 +9,51 @@
   <link rel="icon" href="favicon.png">
 </head>
 <body>
-  <header></header>
+  <header>
+    <h1>Calculator by <a href="https://github.com/dtKinger/">@dtKinger</a></h1>
+  </header>
   <main>
-    <h1>Calculator by @dtKinger</h1>
-    
-    <script src="scripts.js"></script>
+    <div id="calculator" class="calculator">
+      <div id="calc-header" class="calc-header">
+        <div class="brand">@dtKinger</div>
+        <div class="solar-panel"><img src="calculator-solar-panel.png" alt="Solar panel picture"></div>
+      </div>
+      <div id="row-1" class="row-1">
+        <div id="screen" class="screen"></div>
+        <button id="btn-clear" class="operator__red">AC</button>
+        
+      </div>
+      <div id="row-2" class="row-2">
+        <button data-id="55" class="numkey">7</button>
+        <button data-id="56" class="numkey">8</button>
+        <button data-id="57" class="numkey">9</button>
+        <button data-id="47" class="numkey operator">÷</button>
+      </div>
+      <div id="row-3" class="row-3">
+        <button data-id="52" class="numkey">4</button>
+        <button data-id="53" class="numkey">5</button>
+        <button data-id="54" class="numkey">6</button>
+        <button data-id="47" class="numkey operator">x</button>
+      </div>
+      <div id="row-4" class="row-4">
+        <button data-id="52" class="numkey">1</button>
+        <button data-id="53" class="numkey">2</button>
+        <button data-id="54" class="numkey">3</button>
+        <button data-id="47" class="numkey operator">-</button>
+      </div>
+      <div id="row-5" class="row-5">
+        <button data-id="52" class="numkey">0</button>
+        <button data-id="53" class="numkey">.</button>
+        <button data-id="54" class="numkey operator">=</button>
+        <button data-id="47" class="numkey operator">+</button>
+      </div>
+    </div>
+
   </main>
   <footer>
-    <a href="https://github.com/dtKinger/">@dtKinger</a>
+    <a href="https://github.com/dtKinger/calculator-assignment-TOP">View Code</a>
     <a href="https://p4ges.com">p4ges.com © 2023</a>
   </footer>
+  <script src="scripts.js"></script>
 </body>
 </html>
