@@ -130,10 +130,10 @@ button{
   flex: 4;
   color: ivory;
   opacity: .9;
-  border: 2px solid rgb(56, 56, 56, 0.75);
+  border: 1px solid gold;
   border-radius: 10px;
   background-color:rgb(56, 56, 56, 0.5);
-  box-shadow: inset 0px 0px 3px 2px gold, 0px 0px 3px 2px gold;
+  box-shadow: inset 0px 0px 3px 1px gold, 0px 0px 3px 1px gold;
   padding: 8px;
   font-size: 2rem;
   align-items: flex-end;
