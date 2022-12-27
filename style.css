@@ -11,10 +11,11 @@ body{
   background-color: ivory;
   box-sizing: border-box;
 }
-/* FOR DEV ONLY */
+/* FOR DEV ONLY
 div{
   border: 1px solid red;
 }
+ */
 
 
 ol, li {
@@ -83,6 +84,17 @@ button{
   margin: 20px;
   background-color: rgb(28, 75, 137);
   color: rgb(56, 56, 56);
+  border: 2px solid rgb(56, 56, 56);
+  border-radius: 30px 10px;
+  box-shadow: 2px 2px 3px 2px rgb(56, 56, 56);
+}
+
+.btn:hover{
+  cursor: pointer;
+}
+
+.btn:active{
+  transform: scale(0.9);
 }
 
 .calc-header{
@@ -98,6 +110,7 @@ button{
   flex: 1;
   color: ivory;
   opacity: .75;
+  font-size: 22px;
 }
 
 .solar-panel{
@@ -108,9 +121,20 @@ button{
   max-width: 100%;
   height: 36px;
   border: 2px solid rgb(56, 56, 56);
-  border-radius: 5px;
+  border-radius: 20%;
 }
 
+.screen{
+  display: flex;
+  color: ivory;
+  opacity: .9;
+  border: 2px solid rgb(56, 56, 56);
+  border-radius: 10px;
+  padding: 8px;
+  font-size: 2rem;
+  align-items: flex-end;
+  justify-content: right;
+}
 
 .numpad{
   display: flex;
@@ -127,14 +151,15 @@ button{
 .numkey{
   flex: 1;
   background-color:rgb(56, 56, 56);
+  opacity: .925;
   color: ivory;
-  font-size: 30px;
+  font-size: 2rem;
   width: 64px;
   height: 72px;
 }
 
 .screen{
- flex: 4.25;
+ flex: 4;
 }
 
 .operator{
@@ -146,4 +171,5 @@ button{
   flex: 1;
   background-color: red;
   height: 72px;
+  font-size: 24px;
 }
