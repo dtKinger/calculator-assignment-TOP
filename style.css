@@ -105,6 +105,8 @@ button{
   flex: 1;
   align-items: center;
   text-align: center;
+  border-bottom: 2px solid rgb(56, 56, 56, 0.5);
+  margin-bottom: 8px;
 }
 
 .brand{
