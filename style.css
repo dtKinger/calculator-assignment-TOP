@@ -127,10 +127,13 @@ button{
 
 .screen{
   display: flex;
+  flex: 4;
   color: ivory;
   opacity: .9;
-  border: 2px solid rgb(56, 56, 56);
+  border: 2px solid rgb(56, 56, 56, 0.75);
   border-radius: 10px;
+  background-color:rgb(56, 56, 56, 0.5);
+  box-shadow: inset 0px 0px 3px 2px gold, 0px 0px 3px 2px gold;
   padding: 8px;
   font-size: 2rem;
   align-items: flex-end;
@@ -159,10 +162,6 @@ button{
   height: 72px;
 }
 
-.screen{
- flex: 4;
-}
-
 .operator{
   flex: 1;
   background-color: rgb(225, 155, 132);
@@ -173,4 +172,8 @@ button{
   background-color: rgba(248, 104, 21, 0.9);
   height: 72px;
   font-size: 24px;
+}
+
+.toggle-data{
+  display: none;
 }
