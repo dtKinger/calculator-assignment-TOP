@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
 
+/* Alarm clock font */
+@font-face {
+  font-family: 'alarm clock Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('alarm clock Regular'), url('alarm clock.woff') format('woff');
+}
+
 *{
   margin: 0px;
   padding: 0px;
