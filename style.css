@@ -38,7 +38,7 @@ header, footer{
 
 header a, a:hover, a:visited, a:active{
   color: ivory;
-}  
+}   
 
 footer{
   justify-content: space-between;
@@ -83,7 +83,7 @@ button{
   width: 335px;
   height: 480px;
   margin: 20px;
-  background-color: rgb(28, 75, 137);
+  background-color: rgb(107, 137, 187);
   color: rgb(56, 56, 56);
   border: 2px solid rgb(56, 56, 56);
   border-radius: 30px 10px;
@@ -165,12 +165,12 @@ button{
 
 .operator{
   flex: 1;
-  background-color: orange;
+  background-color: rgb(225, 155, 132);
 }
 
 .operator__red{
   flex: 1;
-  background-color: red;
+  background-color: rgba(248, 104, 21, 0.779);
   height: 72px;
   font-size: 24px;
 }
