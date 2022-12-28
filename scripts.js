@@ -3,7 +3,8 @@
  \ ========================= */
 
 // INITIALIZE VARIABLES
-
+let memory = null;
+let arrayMem = [];
 
 
 // GETS + SELECTORS
@@ -18,6 +19,11 @@ const exponentValue = document.getElementById('exponent');
 // FUNCTIONS
 function clearIO(){
   inputOutput.innerText = '';
+};
+
+function clearMemory(){
+  memory = null;
+  arrayMem = [];
 };
 
  /* ========================== \
@@ -42,15 +48,20 @@ function clearIO(){
 
  /* ========================= \
 |          OPERATORS           |
- \ =========================* /
+ \ ========================= */
+
+ // AC Clears Memory and Clears screen .io
+clear.addEventListener('click', () => {
+  clearIO();
+  clearMemory();
+});
+
 
 // OPERATE
 // 1. Calculate
 // 2. Round to two decimals
 // 3. If big number, show exponent?
 
-
-// AC Clears Memory and Clears screen .io
 
 // Equals
 // Operates, Displays, and CLEARS MEMORY.
