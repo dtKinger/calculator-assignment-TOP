@@ -184,8 +184,7 @@ button{
   background-color: rgb(225, 155, 132);
 }
 
-.operator__clear{
-  flex: 1;
+.btn-clear{
   background-color: rgba(248, 104, 21, 0.9);
   height: 72px;
   font-size: 24px;
