@@ -3,18 +3,21 @@
  \ ========================= */
 
 // INITIALIZE VARIABLES
-let memory = null; // Working variable to hold calculated values.
+let memory = ''; // Working variable to hold calculated values.
 let arrayMem = []; // Working array to hold calculated values.
+let a = null;
+let b = null;
 
 
 // GETS + SELECTORS
 
-const numkeys = document.getElementsByClassName('.numkey'); // All number imput keys and the decimal
-const operators = document.getElementsByClassName('.operator'); // All operators: =, +, -, x, /
+const numkeys = document.querySelectorAll('.numkey'); // All number imput keys and the decimal
+const operators = document.querySelectorAll('.operator'); // All operators: =, +, -, x, /
 const screen = document.getElementById('screen'); // Div for "screen" containing the io P tag.
 const inputOutput = document.getElementById('io'); // Paragraph tag inside Screen
 const exponentValue = document.getElementById('exponent');
-const clear = document.querySelector('.btn-clear'); // AC button
+// Operator buttons
+const clear = document.querySelector('.btn-clear');
 const divides = document.getElementById('divides');
 const multiples = document.getElementById('multiplies');
 const minus = document.getElementById('minus');
@@ -30,9 +33,22 @@ function clearIO(){
 };
 
 function clearMemory(){
-  memory = null;
+  memory = '';
   arrayMem = [];
 };
+
+function showCurrentValue(){
+  inputOutput.innerText = memory;
+}
+
+// inputOutput Observer
+function checkIO(){
+  if (inputOutput.innerText.length > 9){
+    alert('Values of 1 Billion or higher not supported.');
+    clearIO();
+    showCurrentValue();
+  }
+}
 
  /* ========================== \
 |  END OF GLOBAL DECLARATIONS   |
@@ -41,39 +57,26 @@ function clearMemory(){
 
 
  /* ========================= \
-|           NUMKEYS            |
+|      NUMKEYS - CLICKS        |
+ \ ========================= */
+
+ numkeys.forEach(function (numkey) {
+  numkey.addEventListener('click', function() {
+    inputOutput.innerText += numkey.getAttribute('value');
+    checkIO();
+  });
+});
+
+ /* ========================= \
+|      NUMKEYS - KEYDOWN       |
  \ ========================= */
 
 
-
-/* ADDITION 
-const add = function(a, b) {
-  return a + b;
-};
-*/
-
-/* SUBTRACTION
-const subtract = function(a, b) {
-	return a - b;
-};
-*/
-
-/*
-const sum = function(array){
-  return array.reduce((p, c) => p + c, 0);
-};
-
-const multiply = function(array) {
-  return array.reduce((p, c) => p * c, 1)
-};
-*/
 
 
  /* ========================== \
 |         END OF NUMKEYS        |
  \ ========================== */
-
-
 
 
  /* ========================= \
@@ -86,12 +89,24 @@ clear.addEventListener('click', () => {
   clearMemory();
 });
 
-
 // OPERATE
 // 1. Calculate
 // 2. Round to two decimals
 // 3. If big number, show exponent?
 
+function operate(a, b){
+
+  
+
+  checkIO(); // Keep the screen under 999,999,999
+};
+
+/* FOR ANOTHER DAY
+if (inputOutput.innerText.length > 10){
+  let zeros = (inputOutput.innerText.length - 10);
+  exponentValue.textContent = `e${zeros}`;
+}
+*/
 
 // Equals
 // Operates, Displays, and CLEARS MEMORY.
