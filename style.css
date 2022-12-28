@@ -167,9 +167,8 @@ button{
   gap: 6px;
 }
 
-.numkey{
+.numkey, .operator{
   flex: 1;
-  background-color:rgb(56, 56, 56);
   opacity: .925;
   color: ivory;
   font-size: 2rem;
@@ -177,12 +176,15 @@ button{
   height: 72px;
 }
 
+.numkey{
+  background-color:rgb(56, 56, 56);
+}
+
 .operator{
-  flex: 1;
   background-color: rgb(225, 155, 132);
 }
 
-.operator__red{
+.operator__clear{
   flex: 1;
   background-color: rgba(248, 104, 21, 0.9);
   height: 72px;
