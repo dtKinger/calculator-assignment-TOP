@@ -4,11 +4,10 @@
 
 // INITIALIZE VARIABLES
 let memory = ''; // Working variable to hold calculated values.
-let arrayMem = []; // Working array to hold calculated values.
-let a = null;
-let b = null;
-
-
+let stored = { value: null };
+let evaluate = { value: null };
+let arrayMem = [stored, evaluate]; // Working array to hold calculated values.
+stored.value = 2;
 // GETS + SELECTORS
 
 const numkeys = document.querySelectorAll('.numkey'); // All number imput keys and the decimal
@@ -34,11 +33,12 @@ function clearIO(){
 
 function clearMemory(){
   memory = '';
-  arrayMem = [];
+  stored = null;
+  evaluate = null;
 };
 
-function showCurrentValue(){
-  inputOutput.innerText = memory;
+function showStored(){
+  inputOutput.innerText = stored;
 }
 
 // inputOutput Observer
@@ -46,7 +46,7 @@ function checkIO(){
   if (inputOutput.innerText.length > 9){
     alert('Values of 1 Billion or higher not supported.');
     clearIO();
-    showCurrentValue();
+    showStored();
   }
 }
 
