@@ -3,28 +3,27 @@
  \ ========================= */
 
 // INITIALIZE VARIABLES
-let memory = ''; // Working variable to hold calculated values.
-let stored = { value: null };
-let evaluate = { value: null };
+let output = ''; // Working variable to hold calculated values.
+let stored = { value: null }; // Stored and evaluate are mutable not like 
+let evaluate = { value: null }; // primitive values, which are not.
 let arrayMem = [stored, evaluate]; // Working array to hold calculated values.
-stored.value = 2;
+let operation;
+
 // GETS + SELECTORS
 
+/// Groups
 const numkeys = document.querySelectorAll('.numkey'); // All number imput keys and the decimal
 const operators = document.querySelectorAll('.operator'); // All operators: =, +, -, x, /
 const screen = document.getElementById('screen'); // Div for "screen" containing the io P tag.
 const inputOutput = document.getElementById('io'); // Paragraph tag inside Screen
 const exponentValue = document.getElementById('exponent');
-// Operator buttons
+/// Operator buttons
 const clear = document.querySelector('.btn-clear');
 const divides = document.getElementById('divides');
 const multiples = document.getElementById('multiplies');
 const minus = document.getElementById('minus');
 const plus = document.getElementById('plus');
 const equals = document.getElementById('equals');
-
-
-
 
 // FUNCTIONS
 function clearIO(){
@@ -33,23 +32,26 @@ function clearIO(){
 
 function clearMemory(){
   memory = '';
-  stored = null;
-  evaluate = null;
+  stored.value = null;
+  evaluate.value = null;
 };
 
 function showStored(){
-  inputOutput.innerText = stored;
+  inputOutput.innerText = stored.value;
+}
+
+function showEvaluate(){
+  inputOutput.innertext = evaluate;
 }
 
 // inputOutput Observer
 function checkIO(){
   if (inputOutput.innerText.length > 9){
-    alert('Values of 1 Billion or higher not supported.');
+    alert('Values of 1 Billion or higher are not supported.');
     clearIO();
     showStored();
   }
 }
-
  /* ========================== \
 |  END OF GLOBAL DECLARATIONS   |
  \ ========================== */
@@ -57,7 +59,7 @@ function checkIO(){
 
 
  /* ========================= \
-|      NUMKEYS - CLICKS        |
+|       NUMKEYS - CLICKS       |
  \ ========================= */
 
  numkeys.forEach(function (numkey) {
@@ -92,23 +94,31 @@ clear.addEventListener('click', () => {
 // OPERATE
 // 1. Calculate
 // 2. Round to two decimals
-// 3. If big number, show exponent?
 
-function operate(a, b){
+function operate(operation){
 
+  switch (operation) {
+    case add:
+      add(a, b);
+      break;
+    case subtract:
+      subtract(stored, evaluate);
+      break;
+    case multiply:
+      multiply(stored.value, evaluate.value);
+      break;
+    case divide:
+      divide(stored, evaluate);
+      break;
+    case equate:
+      equate(store, evaluate);
+      break;
+    }
   
-
   checkIO(); // Keep the screen under 999,999,999
 };
 
-/* FOR ANOTHER DAY
-if (inputOutput.innerText.length > 10){
-  let zeros = (inputOutput.innerText.length - 10);
-  exponentValue.textContent = `e${zeros}`;
-}
-*/
-
-// Equals
+// Equate
 // Operates, Displays, and CLEARS MEMORY.
 
 // +, -, *, /
