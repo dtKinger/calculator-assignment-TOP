@@ -3,18 +3,26 @@
  \ ========================= */
 
 // INITIALIZE VARIABLES
-let memory = null;
-let arrayMem = [];
+let memory = null; // Working variable to hold calculated values.
+let arrayMem = []; // Working array to hold calculated values.
 
 
 // GETS + SELECTORS
 
 const numkeys = document.getElementsByClassName('.numkey'); // All number imput keys and the decimal
 const operators = document.getElementsByClassName('.operator'); // All operators: =, +, -, x, /
-const clear = document.querySelector('.btn-clear'); // AC button
 const screen = document.getElementById('screen'); // Div for "screen" containing the io P tag.
 const inputOutput = document.getElementById('io'); // Paragraph tag inside Screen
 const exponentValue = document.getElementById('exponent');
+const clear = document.querySelector('.btn-clear'); // AC button
+const divides = document.getElementById('divides');
+const multiples = document.getElementById('multiplies');
+const minus = document.getElementById('minus');
+const plus = document.getElementById('plus');
+const equals = document.getElementById('equals');
+
+
+
 
 // FUNCTIONS
 function clearIO(){
@@ -37,6 +45,28 @@ function clearMemory(){
  \ ========================= */
 
 
+
+/* ADDITION 
+const add = function(a, b) {
+  return a + b;
+};
+*/
+
+/* SUBTRACTION
+const subtract = function(a, b) {
+	return a - b;
+};
+*/
+
+/*
+const sum = function(array){
+  return array.reduce((p, c) => p + c, 0);
+};
+
+const multiply = function(array) {
+  return array.reduce((p, c) => p * c, 1)
+};
+*/
 
 
  /* ========================== \
