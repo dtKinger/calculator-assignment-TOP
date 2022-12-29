@@ -52,14 +52,6 @@ function showStored(){
   }
 }
 
-function showdisplay(){
-  inputOutput.innerText = display.value;
-};
-
-function showEvaluate(){
-  inputOutput.innertext = memory[memory.length-1];
-}
-
 function showResult(){
   inputOutput.innerText = result.value;
 }
@@ -73,6 +65,7 @@ function checkIO(){
   if (inputOutput.innerText.length > 9){
     alert('Values of 1 Billion or higher are not supported.');
     clearIO();
+    memory.pop();
     showStored();
   }
 }
@@ -157,8 +150,11 @@ function operate(a, b){
     result.value = a / b;
   }
   memory.push(parseFloat(result.value));
+
   showResult();
   checkIO(); // Keep the screen under 999,999,999
+  
+  
 };
 
 
