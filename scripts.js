@@ -8,7 +8,7 @@ let memory = []; // Stored and evaluate are mutable not like
 let display = { value: null };
 let result = { value: null };
 let operationType = { value: null }; // Store the kind of operation to take place
-
+let operatorMem = [];
 
 // GETS + SELECTORS
 
@@ -75,6 +75,8 @@ function checkIO(){
 
  numkeys.forEach(function (numkey) {
   numkey.addEventListener('click', function() {
+    // If there is a result.value is on screen,
+    // clear it the next time a number is entered
     if (result.value != null){
       clearIO();
       result.value = null;
@@ -103,7 +105,7 @@ function checkIO(){
 
  operators.forEach(function (operator) {
   operator.addEventListener('click', function(e) {
-    memory.push(parseFloat(inputOutput.innerText));
+    memory.push(parseFloat(display.value));
     if (operationType.value != null
       && memory[memory.length-2] != undefined
       && memory[memory.length-1] != undefined){
@@ -146,6 +148,7 @@ function operate(a, b){
   memory.push(parseFloat(result.value));
   showResult();
   checkIO(); // Keep the screen under 999,999,999
+  console.log(operationType.value);
   operationType.value = null;
 
 };
