@@ -8,12 +8,6 @@ let memory = []; // Stored and evaluate are mutable not like
 let display = { value: null };
 let result = { value: null };
 let operationType = { value: null }; // Store the kind of operation to take place
-// let arrayMem = [stored, evaluate]; // Working array to hold calculated values.
-/*
-let a = memory[memory.length-2];
-let o = operationType.value;
-let b = memory[memory.length-1];
-*/
 
 
 // GETS + SELECTORS
@@ -107,24 +101,23 @@ function checkIO(){
 |          OPERATORS           |
  \ ========================= */
 
-// Plus
-plus.addEventListener('click', () => {
-  memory.push(parseFloat(inputOutput.innerText));
-  operationType.value = 'add';
-  clearIO();
-  if (memory[memory.length-2] != null && memory[memory.length-1] != null && operationType.value != null){
-    operate();
-  }
+ operators.forEach(function (operator) {
+  operator.addEventListener('click', function(e) {
+    memory.push(parseFloat(inputOutput.innerText));
+    if (operationType.value != null
+      && memory[memory.length-2] != undefined
+      && memory[memory.length-1] != undefined){
+      operate();
+    } else if (operationType.value == null
+      && memory[memory.length-2] != undefined
+      && memory[memory.length-1] != undefined){
+      operationType.value = operator.getAttribute('id');
+      operate();
+    } else {
+      clearIO();
+    }
+  });
 });
-
-// Minus
-
-
-// Multiplies
-
-
-// Divides
-
 
  // AC Clears Memory and Clears screen .io
 clear.addEventListener('click', () => {
@@ -133,28 +126,28 @@ clear.addEventListener('click', () => {
 });
 
 // OPERATE
-// 1. Calculate
 // 2. Round to two decimals
 
 function operate(a, b){
   a = parseFloat(memory[memory.length-2]);
   b = parseFloat(memory[memory.length-1]);
   
-  if (operationType.value = 'add' ){
+  if (operationType.value == 'plus'){
     result.value = a + b;
-  } else if (operationType.value = 'subtract'){
+  } else if (operationType.value == 'minus'){
     result.value = a - b;
-  } else if (operationType.value = 'multiply'){
+  } else if (operationType.value == 'multiplies'){
     result.value = a * b;
-  } else if (operationType.value = 'divide'){
+  } else if (operationType.value == 'divides'){
     result.value = a / b;
+  } else if (operationType.value == 'equals'){
+    result.value = inputOutput.innerText; 
   }
   memory.push(parseFloat(result.value));
-
   showResult();
   checkIO(); // Keep the screen under 999,999,999
-  
-  
+  operationType.value = null;
+
 };
 
 

@@ -198,6 +198,11 @@ textarea:focus {
   background-color: rgb(225, 155, 132);
 }
 
+.active-op{
+  background-color: lightcyan;
+  transform: scale(1.05);
+}
+
 .btn-clear{
   background-color: rgba(248, 104, 21, 0.9);
   height: 72px;
