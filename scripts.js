@@ -4,7 +4,7 @@
 
 // INITIALIZE VARIABLES
 
-let memory = [{ previous: null }, { current: null }]; // Stored and evaluate are mutable not like 
+let memory = []; // Stored and evaluate are mutable not like 
 let display = { value: null };
 let result = { value: null };
 let operationType = { value: null }; // Store the kind of operation to take place
@@ -39,13 +39,17 @@ function clearIO(){
 };
 
 function clearMemory(){
-  memory = []
+  memory = [];
   display.value = null;
   operationType.value = null;
 };
 
 function showStored(){
-  inputOutput.innerText = memory[memory.length-2];
+  if (memory[memory.length-1] != null){
+  inputOutput.innerText = memory[memory.length-1];
+  } else {
+    inputOutput.innerText = '';
+  }
 }
 
 function showdisplay(){
@@ -81,7 +85,6 @@ function checkIO(){
  numkeys.forEach(function (numkey) {
   numkey.addEventListener('click', function() {
     inputOutput.innerText += numkey.getAttribute('value');
-    memory[memory.length-2] = inputOutput.innerText;
     display.value = inputOutput.innerText;
     checkIO();
   });
@@ -105,8 +108,8 @@ function checkIO(){
 
 // Plus
 plus.addEventListener('click', () => {
+  memory.push(parseFloat(inputOutput.innerText));
   operationType.value = 'add';
-  memory[memory.length-1] = display.value;
   clearIO();
   if (memory[memory.length-2] != null && memory[memory.length-1] != null && operationType.value != null){
     operate();
@@ -149,16 +152,6 @@ function operate(a, b){
   checkIO(); // Keep the screen under 999,999,999
 };
 
-
-/*
-memory[memory.length-2]
-display.value
-memory[memory.length-1]
-*/
-
-
-// Equate
-// Operates, Displays, and CLEARS MEMORY.
 
 // +, -, *, /
 // Operates, displays results, keeps current value in memory.
