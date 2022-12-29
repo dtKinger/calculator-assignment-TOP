@@ -10,9 +10,9 @@ let result = { value: null };
 let operationType = { value: null }; // Store the kind of operation to take place
 // let arrayMem = [stored, evaluate]; // Working array to hold calculated values.
 /*
-let a = stored.value;
+let a = memory[memory.length-2];
 let o = operationType.value;
-let b = evaluate.value;
+let b = memory[memory.length-1];
 */
 
 
@@ -45,7 +45,7 @@ function clearMemory(){
 };
 
 function showStored(){
-  inputOutput.innerText = stored.value;
+  inputOutput.innerText = memory[memory.length-2];
 }
 
 function showdisplay(){
@@ -53,7 +53,7 @@ function showdisplay(){
 };
 
 function showEvaluate(){
-  inputOutput.innertext = evaluate.value;
+  inputOutput.innertext = memory[memory.length-1];
 }
 
 function showResult(){
@@ -81,7 +81,7 @@ function checkIO(){
  numkeys.forEach(function (numkey) {
   numkey.addEventListener('click', function() {
     inputOutput.innerText += numkey.getAttribute('value');
-    stored.value = inputOutput.innerText;
+    memory[memory.length-2] = inputOutput.innerText;
     display.value = inputOutput.innerText;
     checkIO();
   });
@@ -106,13 +106,11 @@ function checkIO(){
 // Plus
 plus.addEventListener('click', () => {
   operationType.value = 'add';
-  evaluate.value = display.value;
+  memory[memory.length-1] = display.value;
   clearIO();
-  if (stored.value != null && evaluate.value != null && operationType.value != null){
+  if (memory[memory.length-2] != null && memory[memory.length-1] != null && operationType.value != null){
     operate();
   }
-  
-  
 });
 
 // Minus
@@ -134,36 +132,28 @@ clear.addEventListener('click', () => {
 // 1. Calculate
 // 2. Round to two decimals
 
-function operate(o){
-  o = operationType.value;
-  switch (operationType) {
-  case 'add':
-    result.value = stored.value + evaluate.value;
-    break;
-  case 'subtract':
-    result.value = stored.value - evaluate.value;
-    break;
-  case 'multiply':
-    result.value = stored.value * evaluate.value;
-    break;
-  case 'divide':
-    result.value = stored.value / evaluate.value;
-    break;
-  case 'equate':
-    ((stored.value) (operationType.getAttribute('value')) (evaluate.value));
-    break;
+function operate(a, b){
+  a = parseFloat(memory[memory.length-2]);
+  b = parseFloat(memory[memory.length-1]);
+  
+  if (operationType.value = 'add' ){
+    result.value = a + b;
+  } else if (operationType.value = 'subtract'){
+    result.value = a - b;
+  } else if (operationType.value = 'multiply'){
+    result.value = a * b;
+  } else if (operationType.value = 'divide'){
+    result.value = a / b;
   }
-
   showResult();
   checkIO(); // Keep the screen under 999,999,999
-  operationType.value = null;
 };
 
 
 /*
-stored.value
+memory[memory.length-2]
 display.value
-evaluate.value
+memory[memory.length-1]
 */
 
 
