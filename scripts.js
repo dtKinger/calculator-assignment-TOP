@@ -3,11 +3,18 @@
  \ ========================= */
 
 // INITIALIZE VARIABLES
-let output = ''; // Working variable to hold calculated values.
-let stored = { value: null }; // Stored and evaluate are mutable not like 
-let evaluate = { value: null }; // primitive values, which are not.
-let arrayMem = [stored, evaluate]; // Working array to hold calculated values.
-let operation;
+
+let memory = [{ previous: null }, { current: null }]; // Stored and evaluate are mutable not like 
+let display = { value: null };
+let result = { value: null };
+let operationType = { value: null }; // Store the kind of operation to take place
+// let arrayMem = [stored, evaluate]; // Working array to hold calculated values.
+/*
+let a = stored.value;
+let o = operationType.value;
+let b = evaluate.value;
+*/
+
 
 // GETS + SELECTORS
 
@@ -20,28 +27,37 @@ const exponentValue = document.getElementById('exponent');
 /// Operator buttons
 const clear = document.querySelector('.btn-clear');
 const divides = document.getElementById('divides');
-const multiples = document.getElementById('multiplies');
+const multiplies = document.getElementById('multiplies');
 const minus = document.getElementById('minus');
 const plus = document.getElementById('plus');
 const equals = document.getElementById('equals');
 
 // FUNCTIONS
+
 function clearIO(){
   inputOutput.innerText = '';
 };
 
 function clearMemory(){
-  memory = '';
-  stored.value = null;
-  evaluate.value = null;
+  memory = []
+  display.value = null;
+  operationType.value = null;
 };
 
 function showStored(){
   inputOutput.innerText = stored.value;
 }
 
+function showdisplay(){
+  inputOutput.innerText = display.value;
+};
+
 function showEvaluate(){
-  inputOutput.innertext = evaluate;
+  inputOutput.innertext = evaluate.value;
+}
+
+function showResult(){
+  inputOutput.innerText = result.value;
 }
 
 // inputOutput Observer
@@ -65,6 +81,8 @@ function checkIO(){
  numkeys.forEach(function (numkey) {
   numkey.addEventListener('click', function() {
     inputOutput.innerText += numkey.getAttribute('value');
+    stored.value = inputOutput.innerText;
+    display.value = inputOutput.innerText;
     checkIO();
   });
 });
@@ -85,6 +103,27 @@ function checkIO(){
 |          OPERATORS           |
  \ ========================= */
 
+// Plus
+plus.addEventListener('click', () => {
+  operationType.value = 'add';
+  evaluate.value = display.value;
+  clearIO();
+  if (stored.value != null && evaluate.value != null && operationType.value != null){
+    operate();
+  }
+  
+  
+});
+
+// Minus
+
+
+// Multiplies
+
+
+// Divides
+
+
  // AC Clears Memory and Clears screen .io
 clear.addEventListener('click', () => {
   clearIO();
@@ -95,28 +134,38 @@ clear.addEventListener('click', () => {
 // 1. Calculate
 // 2. Round to two decimals
 
-function operate(operation){
+function operate(o){
+  o = operationType.value;
+  switch (operationType) {
+  case 'add':
+    result.value = stored.value + evaluate.value;
+    break;
+  case 'subtract':
+    result.value = stored.value - evaluate.value;
+    break;
+  case 'multiply':
+    result.value = stored.value * evaluate.value;
+    break;
+  case 'divide':
+    result.value = stored.value / evaluate.value;
+    break;
+  case 'equate':
+    ((stored.value) (operationType.getAttribute('value')) (evaluate.value));
+    break;
+  }
 
-  switch (operation) {
-    case add:
-      add(a, b);
-      break;
-    case subtract:
-      subtract(stored, evaluate);
-      break;
-    case multiply:
-      multiply(stored.value, evaluate.value);
-      break;
-    case divide:
-      divide(stored, evaluate);
-      break;
-    case equate:
-      equate(store, evaluate);
-      break;
-    }
-  
+  showResult();
   checkIO(); // Keep the screen under 999,999,999
+  operationType.value = null;
 };
+
+
+/*
+stored.value
+display.value
+evaluate.value
+*/
+
 
 // Equate
 // Operates, Displays, and CLEARS MEMORY.
