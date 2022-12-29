@@ -64,6 +64,10 @@ function showResult(){
   inputOutput.innerText = result.value;
 }
 
+function emptyResults(){
+  result.value = null;
+};
+
 // inputOutput Observer
 function checkIO(){
   if (inputOutput.innerText.length > 9){
@@ -84,6 +88,10 @@ function checkIO(){
 
  numkeys.forEach(function (numkey) {
   numkey.addEventListener('click', function() {
+    if (result.value != null){
+      clearIO();
+      result.value = null;
+    }
     inputOutput.innerText += numkey.getAttribute('value');
     display.value = inputOutput.innerText;
     checkIO();
@@ -148,6 +156,7 @@ function operate(a, b){
   } else if (operationType.value = 'divide'){
     result.value = a / b;
   }
+  memory.push(parseFloat(result.value));
   showResult();
   checkIO(); // Keep the screen under 999,999,999
 };
