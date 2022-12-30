@@ -54,6 +54,11 @@ function clearMemory(){
   // decimalSetting.value = '';
 };
 
+function memBlur(){
+  clearIO();
+  clearMemory();
+};
+
 // Stored is the most recent item commited to memory.
 function showStored(){
   if (memory[memory.length-1] != null){
@@ -103,8 +108,7 @@ numkeys.forEach(function (numkey) {
       numkey.disabled = false;
     } else if (blinker.classList.contains('cursor-hide')){
       numkey.disabled = true;
-      clearIO();
-      clearMemory();
+      memBlur();
     };
   });
 });
@@ -151,6 +155,19 @@ decimal.addEventListener('click', () => {
  \ ========================= */
 
  // For Calculation
+
+operators.forEach(function (operator) {
+  operator.disabled = true;
+  powerBtn.addEventListener('change', () => {
+    if (blinker.classList.contains('blinking-cursor')){
+      operator.disabled = false;
+    } else if (blinker.classList.contains('cursor-hide')){
+      operator.disabled = true;
+      memBlur();
+    };
+  });
+});
+
 operators.forEach(function (operator) {
   operator.addEventListener('click', function(e) {
     memory.push(parseFloat(inputOutput.innerText));
@@ -182,8 +199,7 @@ function lolightOperator(){
 
  // AC Clears Memory and Clears screen .io
 clear.addEventListener('click', () => {
-  clearIO();
-  clearMemory();
+  memBlur();
 });
 
 // OPERATE

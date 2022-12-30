@@ -1,9 +1,9 @@
 .power {
-
+color: rgba(255, 255, 240, 0.75);
 }
 
 .power input{
-  max-width: 30px;
+  max-width: 40px;
   margin-left: 5px;
   margin-right: 5px;
 }
