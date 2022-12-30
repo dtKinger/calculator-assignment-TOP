@@ -181,7 +181,7 @@ textarea:focus {
   gap: 6px;
 }
 
-.numkey, .operator, .equals{
+.numkey, .operator, .equals, .btn-clear{
   flex: 1;
   opacity: .925;
   color: ivory;
@@ -199,8 +199,8 @@ textarea:focus {
 }
 
 .active-op{
-  background-color: lightcyan;
-  transform: scale(1.05);
+  box-shadow: none;
+  border: 2px solid green;
 }
 
 .btn-clear{

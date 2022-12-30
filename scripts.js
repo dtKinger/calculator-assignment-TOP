@@ -7,12 +7,12 @@
 /// Groups
 const numkeys = document.querySelectorAll('.numkey'); // All number imput keys and the decimal
 const operators = document.querySelectorAll('.operator'); // All operators: =, +, -, x, /
+let oldActive = document.getElementsByClassName("active-op");
 const inputOutput = document.getElementById('io'); // Paragraph tag inside Screen
 const exponentValue = document.getElementById('exponent');
 /// Operator buttons
 const clear = document.querySelector('.btn-clear');
 const equals = document.getElementById('equals');
-
 
 // INITIALIZE VARIABLES
 
@@ -81,7 +81,7 @@ function checkIO(){
       result.value = null;
     }
     inputOutput.innerText += numkey.getAttribute('value');
-    display.value = inputOutput.innerText;
+    // display.value = inputOutput.innerText; - may not need this anymore
     checkIO();
   });
 });
@@ -102,7 +102,8 @@ function checkIO(){
 |          OPERATORS           |
  \ ========================= */
 
- operators.forEach(function (operator) {
+ // for Calculation
+operators.forEach(function (operator) {
   operator.addEventListener('click', function(e) {
     memory.push(parseFloat(display.value));
     if (operationType.value != null
@@ -119,6 +120,21 @@ function checkIO(){
     }
   });
 });
+
+// For Style
+for (let i = 0; i < operators.length; i++) {
+  operators[i].addEventListener("click", changeButton);
+}
+function changeButton(e) {
+  for (let i = 0; i < oldActive.length; i++) {
+    oldActive[i].classList.remove("active-op");
+  }
+  e.target.classList.add("active-op");
+}
+
+function lowlightOperator(){
+  oldActive.classList.remove("active-op");
+};
 
  // AC Clears Memory and Clears screen .io
 clear.addEventListener('click', () => {
@@ -149,7 +165,7 @@ function operate(a, b){
   showResult();
   checkIO(); // Keep the screen under 999,999,999
   operationType.value = null;
-
+  lowlightOperator()
 };
 
 
