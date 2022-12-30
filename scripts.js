@@ -48,7 +48,11 @@ function showStored(){
 
 // The Result of a calculation
 function showResult(){
-  inputOutput.innerText = result.value;
+  if (result.value * 10 % 10 != 0){
+    inputOutput.innerText = (result.value).toFixed(2);
+  } else {
+    inputOutput.innerText = result.value;
+  }
 }
 
 function emptyResults(){
@@ -141,7 +145,6 @@ clear.addEventListener('click', () => {
 });
 
 // OPERATE
-// 2. Round to two decimals
 
 function operate(a, b){
   a = parseFloat(memory[memory.length-2]);
@@ -160,9 +163,6 @@ function operate(a, b){
     result.value = a * b;
   } else if (operator == 'divides'){
     result.value = a / b;
-  } else if (operator == 'equals'){
-    result.value = +(memory[memory.length-2]) (operatorMem[operatorMem.length-2]) +(memory[memory.length-1]);
-    showResult();
   }
   memory.push(parseFloat(result.value));
   showResult();
@@ -171,9 +171,6 @@ function operate(a, b){
   lolightOperator();
 };
 
-
-// +, -, *, /
-// Operates, displays results, keeps current value in memory.
 
 
  /* ========================== \
