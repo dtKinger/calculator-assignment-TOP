@@ -150,10 +150,6 @@ button{
   overflow: hidden;
 }
 
-textarea:focus {
-  outline: none;
-}
-
 .io{
   font-family: "DigitalDismay";
   font-size: 2.5rem;

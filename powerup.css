@@ -1,9 +1,13 @@
 .power {
-color: rgba(255, 255, 240, 0.75);
+  display: block;
+  color: rgba(255, 255, 240, 0.75);
+  position: relative;
+  left: 59%;
+  max-width: 120px;
 }
 
 .power input{
-  max-width: 40px;
+  max-width: 35px;
   margin-left: 5px;
   margin-right: 5px;
 }
@@ -14,6 +18,59 @@ color: rgba(255, 255, 240, 0.75);
 
 .backlight{
 box-shadow: inset 0px 0px 3px 1px gold, 0px 0px 3px 1px gold;
+}
+
+
+
+input[type=range]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  border-radius: 5px;
+  background: rgb(54, 84, 140);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  border-radius: 50%;
+  z-index: 10;
+  width: 32px;
+  height: 32px;
+  background-color: red;
+}
+
+input[type=range]::-moz-slider-runnable-track {
+  -webkit-appearance: none;
+  box-shadow: none;
+  border: none;
+  border-radius: 5px;
+  background: rgb(54, 84, 140);
+}
+
+input[type="range"]::-moz-range-thumb{
+  -webkit-appearance: none;
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  border-radius: 50%;
+  z-index: 10;
+  width: 20px;
+  height: 20px;
+  background: red;
+  background-color: red;
+}
+
+input[type="range"]::-ms-thumb{
+  -webkit-appearance: none;
+  cursor: ew-resize;
+  box-shadow: 0 0 2px 0 #555;
+  border-radius: 50%;
+  z-index: 10;
+  width: 64px;
+  height: 32px;
+  background: red;
+  background-color: red;
 }
 
 .blinking-cursor {
