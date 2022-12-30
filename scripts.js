@@ -101,10 +101,13 @@ numkeys.forEach(function (numkey) {
   powerBtn.addEventListener('change', () => {
     if (blinker.classList.contains('blinking-cursor')){
       numkey.disabled = false;
-    }
+    } else if (blinker.classList.contains('cursor-hide')){
+      numkey.disabled = true;
+      clearIO();
+      clearMemory();
+    };
   });
 });
-
 
 numkeys.forEach(function (numkey) {
   numkey.addEventListener('click', function() {
