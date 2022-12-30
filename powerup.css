@@ -20,6 +20,21 @@
 box-shadow: inset 0px 0px 3px 1px gold, 0px 0px 3px 1px gold;
 }
 
+/* Safari and Chrome */
+input[type="range"]::-webkit-slider-thumb {
+  cursor: ew-resize;
+}
+
+input[type="range"]::-moz-range-thumb{
+  -webkit-appearance: none;
+  cursor: ew-resize;
+}
+
+input[type="range"]::-ms-thumb{
+  -webkit-appearance: none;
+  cursor: ew-resize;
+}
+
 .blinking-cursor {
   font-weight: 100;
   font-size: 40px;
