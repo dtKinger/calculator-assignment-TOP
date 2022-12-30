@@ -80,7 +80,7 @@ function checkIO(){
     // clear it the next time a number is entered
     if (result.value != null){
       clearIO();
-      result.value = null;
+      emptyResults();
     }
     inputOutput.innerText += numkey.getAttribute('value');
     // display.value = inputOutput.innerText; - may not need this anymore
@@ -104,18 +104,12 @@ function checkIO(){
 |          OPERATORS           |
  \ ========================= */
 
- // for Calculation
+ // For Calculation
 operators.forEach(function (operator) {
   operator.addEventListener('click', function(e) {
-    memory.push(parseFloat(display.value));
-    if (operationType.value != null
-      && memory[memory.length-2] != undefined
-      && memory[memory.length-1] != undefined){
-      operate();
-    } else if (operationType.value == null
-      && memory[memory.length-2] != undefined
-      && memory[memory.length-1] != undefined){
-      operatorMem.push(operator.getAttribute('id'));
+    memory.push(parseFloat(inputOutput.innerText));
+    operatorMem.push(operator.getAttribute('id'));
+    if (memory[memory.length-2] != undefined && memory[memory.length-1] != undefined){
       operate();
     } else {
       clearIO();
@@ -153,22 +147,27 @@ function operate(a, b){
   a = parseFloat(memory[memory.length-2]);
   b = parseFloat(memory[memory.length-1]);
   
-  if (operatorMem[operatorMem.length-1] == 'plus'){
+  if (operatorMem[operatorMem.length-1] != operatorMem[operatorMem.length-2]){
+    operator = operatorMem[operatorMem.length-2];
+  } else if (operatorMem[operatorMem.length-1] == operatorMem[operatorMem.length-2]){
+    operator = operatorMem[operatorMem.length-1];
+  };
+  if (operator == 'plus'){
     result.value = a + b;
-  } else if (operatorMem[operatorMem.length-1] == 'minus'){
+  } else if (operator == 'minus'){
     result.value = a - b;
-  } else if (operatorMem[operatorMem.length-1] == 'multiplies'){
+  } else if (operator == 'multiplies'){
     result.value = a * b;
-  } else if (operatorMem[operatorMem.length-1] == 'divides'){
+  } else if (operator == 'divides'){
     result.value = a / b;
-  } else if (operatorMem[operatorMem.length-1] == 'equals'){
+  } else if (operator == 'equals'){
     result.value = +(memory[memory.length-2]) (operatorMem[operatorMem.length-2]) +(memory[memory.length-1]);
     showResult();
   }
   memory.push(parseFloat(result.value));
   showResult();
   checkIO(); // Keep the screen under 999,999,999
-  operationType.value = null;
+  operator = null;
   lolightOperator();
 };
 
