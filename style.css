@@ -138,8 +138,7 @@ button{
   opacity: .9;
   border: 1px solid gold;
   border-radius: 10px;
-  background-color:rgb(56, 56, 56, 0.5);
-  /*box-shadow: inset 0px 0px 3px 1px gold, 0px 0px 3px 1px gold;*/
+  background-color:rgb(56, 56, 56, 1.0);
   padding: 8px;
   font-size: 2rem;
   align-items: flex-end;
@@ -216,7 +215,7 @@ box-shadow: 1px 1px 1px 1px rgb(56, 56, 56)
 @media screen and (max-width: 400px){
 
   .numkey, .operator, .equals, .btn-clear{
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     width: 60px;
     height: 60px;
     padding: 6px 10px;
@@ -230,6 +229,18 @@ box-shadow: 1px 1px 1px 1px rgb(56, 56, 56)
     font-size: 1.875rem;
   }
 
+}
+
+@media screen and (max-width: 380px){
+  .btn-clear{
+    max-width: 64.25px;
+  }
+}
+
+@media screen and (max-width: 363px){
+  .btn-clear{
+    max-width: 60px;
+  }
 }
 
 /* For use with exponent button

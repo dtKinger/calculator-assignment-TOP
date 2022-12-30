@@ -17,7 +17,9 @@
 }
 
 .backlight{
-box-shadow: inset 0px 0px 3px 1px gold, 0px 0px 3px 1px gold;
+  transition: ease-in 0.75s;
+  background-color:rgb(56, 56, 56, 0.5);
+  box-shadow: inset 0px 0px 3px 1px gold, 0px 0px 3px 1px gold;
 }
 
 /* Safari and Chrome */
