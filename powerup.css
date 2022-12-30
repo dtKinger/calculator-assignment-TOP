@@ -46,11 +46,18 @@ input[type="range"]::-ms-thumb{
   animation: 1s blink step-end infinite;
 }
 
-@media screen and (max-width: 440px){
+@media screen and (max-width: 400px){
+  
   .blinking-cursor{
     font-size: 30px;
   }
+
+  .power{
+    left: 55.5%;
+  }
+  
 }
+
 .cursor-hide{
   display: none;
 }
