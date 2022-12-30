@@ -37,6 +37,12 @@ input[type="range"]::-ms-thumb{
   cursor: ew-resize;
 }
 
+/* Turn it on */
+.turn-it-on{
+  animation-name: "turn-it-on";
+  animation-duration: 4s;
+} 
+
 .blinking-cursor {
   font-weight: 100;
   font-size: 40px;
