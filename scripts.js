@@ -97,6 +97,16 @@ function checkIO(){
  \ ========================= */
 
 numkeys.forEach(function (numkey) {
+  numkey.disabled = true;
+  powerBtn.addEventListener('change', () => {
+    if (blinker.classList.contains('blinking-cursor')){
+      numkey.disabled = false;
+    }
+  });
+});
+
+
+numkeys.forEach(function (numkey) {
   numkey.addEventListener('click', function() {
     // If there is a result.value is on screen,
     // clear it the next time a number is entered
@@ -107,8 +117,8 @@ numkeys.forEach(function (numkey) {
     inputOutput.innerText += numkey.getAttribute('value');
     // display.value = inputOutput.innerText; - may not need this anymore
     checkIO();
+    });
   });
-});
 
 /*
 function checkDecimal(){
