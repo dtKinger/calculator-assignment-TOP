@@ -210,7 +210,9 @@ textarea:focus {
 }
 
 .equals{
-
+background-color: white;
+color:rgb(56, 56, 56);
+box-shadow: 1px 1px 1px 1px rgb(56, 56, 56)
 }
 
 /* For use with exponent button
