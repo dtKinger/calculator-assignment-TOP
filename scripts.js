@@ -7,7 +7,7 @@
 let memory = []; // Stored and evaluate are mutable not like 
 let display = { value: null };
 let result = { value: null };
-let operationType = { value: null }; // Store the kind of operation to take place
+// let operationType = { value: null }; // Store the kind of operation to take place
 let operatorMem = [];
 
 // GETS + SELECTORS
@@ -15,15 +15,10 @@ let operatorMem = [];
 /// Groups
 const numkeys = document.querySelectorAll('.numkey'); // All number imput keys and the decimal
 const operators = document.querySelectorAll('.operator'); // All operators: =, +, -, x, /
-const screen = document.getElementById('screen'); // Div for "screen" containing the io P tag.
 const inputOutput = document.getElementById('io'); // Paragraph tag inside Screen
 const exponentValue = document.getElementById('exponent');
 /// Operator buttons
 const clear = document.querySelector('.btn-clear');
-const divides = document.getElementById('divides');
-const multiplies = document.getElementById('multiplies');
-const minus = document.getElementById('minus');
-const plus = document.getElementById('plus');
 const equals = document.getElementById('equals');
 
 // FUNCTIONS
@@ -113,7 +108,7 @@ function checkIO(){
     } else if (operationType.value == null
       && memory[memory.length-2] != undefined
       && memory[memory.length-1] != undefined){
-      operationType.value = operator.getAttribute('id');
+      operatorMem.push(operator.getAttribute('id'));
       operate();
     } else {
       clearIO();
@@ -134,21 +129,21 @@ function operate(a, b){
   a = parseFloat(memory[memory.length-2]);
   b = parseFloat(memory[memory.length-1]);
   
-  if (operationType.value == 'plus'){
+  if (operatorMem[operatorMem.length-1] == 'plus'){
     result.value = a + b;
-  } else if (operationType.value == 'minus'){
+  } else if (operatorMem[operatorMem.length-1] == 'minus'){
     result.value = a - b;
-  } else if (operationType.value == 'multiplies'){
+  } else if (operatorMem[operatorMem.length-1] == 'multiplies'){
     result.value = a * b;
-  } else if (operationType.value == 'divides'){
+  } else if (operatorMem[operatorMem.length-1] == 'divides'){
     result.value = a / b;
-  } else if (operationType.value == 'equals'){
-    result.value = inputOutput.innerText; 
+  } else if (operatorMem[operatorMem.length-1] == 'equals'){
+    result.value = +(memory[memory.length-2]) (operatorMem[operatorMem.length-2]) +(memory[memory.length-1]);
+    showResult();
   }
   memory.push(parseFloat(result.value));
   showResult();
   checkIO(); // Keep the screen under 999,999,999
-  console.log(operationType.value);
   operationType.value = null;
 
 };
