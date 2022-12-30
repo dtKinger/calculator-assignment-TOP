@@ -13,6 +13,7 @@ const exponentValue = document.getElementById('exponent');
 /// Operator buttons
 const clear = document.querySelector('.btn-clear');
 const equals = document.getElementById('equals');
+// const decimal = document.getElementById('decimal');
 
 // INITIALIZE VARIABLES
 
@@ -21,12 +22,14 @@ let result = { value: null };
 // let operationType = { value: null }; // Store the kind of operation to take place
 let operatorMem = [];
 let display = { value: inputOutput.innerText };
+let decimalSetting = { value: ''};
 
 // FUNCTIONS
 
 function clearIO(){
   inputOutput.innerText = '';
   lolightOperator();
+  decimalSetting.value = '';
 };
 
 function clearMemory(){
@@ -35,6 +38,7 @@ function clearMemory(){
   result.value = null;
   operatorMem = [];
   lolightOperator();
+  // decimalSetting.value = '';
 };
 
 // Stored is the most recent item commited to memory.
@@ -78,7 +82,7 @@ function checkIO(){
 |       NUMKEYS - CLICKS       |
  \ ========================= */
 
- numkeys.forEach(function (numkey) {
+numkeys.forEach(function (numkey) {
   numkey.addEventListener('click', function() {
     // If there is a result.value is on screen,
     // clear it the next time a number is entered
@@ -91,6 +95,17 @@ function checkIO(){
     checkIO();
   });
 });
+
+/*
+function checkDecimal(){
+  if (decimalSetting.value == 'clicked') return // kill it.
+};
+
+decimal.addEventListener('click', () => {
+  checkDecimal();
+  decimalSetting.value = 'clicked';
+});
+*/
 
  /* ========================= \
 |      NUMKEYS - KEYDOWN       |
@@ -169,12 +184,16 @@ function operate(a, b){
   checkIO(); // Keep the screen under 999,999,999
   operator = null;
   lolightOperator();
+  // decimalSetting.value = '';
 };
 
+// equals also works with the operate() function
+// since it's included in the operator list.
 equals.addEventListener('click', () => {
   memory = [];
   display.value = null;
   lolightOperator();
+  // decimalSetting.value = '';
 });
 
 
