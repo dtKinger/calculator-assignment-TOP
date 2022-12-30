@@ -171,13 +171,11 @@ function operate(a, b){
   lolightOperator();
 };
 
-
-function equate(){
-  operatorMem.push('equals');
-  operate();
+equals.addEventListener('click', () => {
+  memory = [];
+  display.value = null;
   lolightOperator();
-};
-  
+});
 
 
  /* ========================== \
