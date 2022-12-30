@@ -67,19 +67,17 @@ h1{
   }
 }
 
+/*
 button{
   background-color: rgb(56, 56, 56);
   color: ivory;
   padding: 6px 10px;
-  /*
-  max-width: 120px; 
-  word-break: normal;
-  */
   text-align: center;
   border-style: none;
   border-radius: 8px;
   box-shadow: 1px 1px 1px 1px ivory;
 }
+*/
 
 .calculator{
   display: flex;
@@ -182,8 +180,13 @@ button{
   opacity: .925;
   color: ivory;
   font-size: 2rem;
-  width: 64px;
-  height: 72px;
+  width: 60px;
+  height: 68px;
+  padding: 6px 10px;
+  text-align: center;
+  border-style: none;
+  border-radius: 8px;
+  box-shadow: 1px 1px 1px 1px ivory;
 }
 
 .numkey{
@@ -208,6 +211,25 @@ button{
 background-color: ivory;
 color:rgb(56, 56, 56);
 box-shadow: 1px 1px 1px 1px rgb(56, 56, 56)
+}
+
+@media screen and (max-width: 400px){
+
+  .numkey, .operator, .equals, .btn-clear{
+    font-size: 1.5rem;
+    width: 60px;
+    height: 60px;
+    padding: 6px 10px;
+  }
+
+  .screen {
+    font-size: 1.5rem;
+  }
+
+  .io {
+    font-size: 1.875rem;
+  }
+
 }
 
 /* For use with exponent button
