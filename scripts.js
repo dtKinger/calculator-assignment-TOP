@@ -30,7 +30,8 @@ function clearIO(){
 function clearMemory(){
   memory = [];
   display.value = null;
-  operationType.value = null;
+  result.value = null;
+  operatorMem = [];
 };
 
 function showStored(){

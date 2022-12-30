@@ -181,7 +181,7 @@ textarea:focus {
   gap: 6px;
 }
 
-.numkey, .operator{
+.numkey, .operator, .equals{
   flex: 1;
   opacity: .925;
   color: ivory;
@@ -209,6 +209,12 @@ textarea:focus {
   font-size: 24px;
 }
 
+.equals{
+
+}
+
+/* For use with exponent button
 .toggle-data{
   display: none;
 }
+*/
