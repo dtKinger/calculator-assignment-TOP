@@ -2,14 +2,6 @@
 |     GLOBAL DECLARATIONS      |
  \ ========================= */
 
-// INITIALIZE VARIABLES
-
-let memory = []; // Stored and evaluate are mutable not like 
-let display = { value: null };
-let result = { value: null };
-// let operationType = { value: null }; // Store the kind of operation to take place
-let operatorMem = [];
-
 // GETS + SELECTORS
 
 /// Groups
@@ -20,6 +12,15 @@ const exponentValue = document.getElementById('exponent');
 /// Operator buttons
 const clear = document.querySelector('.btn-clear');
 const equals = document.getElementById('equals');
+
+
+// INITIALIZE VARIABLES
+
+let memory = []; // Stored and evaluate are mutable not like 
+let result = { value: null };
+// let operationType = { value: null }; // Store the kind of operation to take place
+let operatorMem = [];
+let display = { value: inputOutput.innerText };
 
 // FUNCTIONS
 
@@ -34,6 +35,7 @@ function clearMemory(){
   operatorMem = [];
 };
 
+// Stored is the most recent item commited to memory.
 function showStored(){
   if (memory[memory.length-1] != null){
   inputOutput.innerText = memory[memory.length-1];
@@ -42,6 +44,7 @@ function showStored(){
   }
 }
 
+// The Result of a calculation
 function showResult(){
   inputOutput.innerText = result.value;
 }
