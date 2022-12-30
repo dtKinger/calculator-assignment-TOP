@@ -172,6 +172,13 @@ function operate(a, b){
 };
 
 
+function equate(){
+  operatorMem.push('equals');
+  operate();
+  lolightOperator();
+};
+  
+
 
  /* ========================== \
 |        END OF OPERATORS       |
