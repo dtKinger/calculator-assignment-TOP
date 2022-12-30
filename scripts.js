@@ -222,16 +222,19 @@ function operate(a, b){
   } else if (operator == 'divides'){
     result.value = a / b;
   }
+
   memory.push(parseFloat(result.value));
   showResult();
   checkIO(); // Keep the screen under 999,999,999
   operator = null;
   lolightOperator();
   // decimalSetting.value = '';
+  
 };
 
 // equals also works with the operate() function
 // since it's included in the operator list.
+// But loads the previous operator from memory.
 equals.addEventListener('click', () => {
   memory = [];
   display.value = null;
