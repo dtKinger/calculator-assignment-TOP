@@ -54,6 +54,7 @@ input[type="range"]::-ms-thumb{
 
   .power{
     left: 55.5%;
+    top: 10px;
   }
   
 }
