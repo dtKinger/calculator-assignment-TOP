@@ -26,6 +26,7 @@ let display = { value: inputOutput.innerText };
 
 function clearIO(){
   inputOutput.innerText = '';
+  lolightOperator();
 };
 
 function clearMemory(){
@@ -33,6 +34,7 @@ function clearMemory(){
   display.value = null;
   result.value = null;
   operatorMem = [];
+  lolightOperator();
 };
 
 // Stored is the most recent item commited to memory.
@@ -132,8 +134,10 @@ function changeButton(e) {
   e.target.classList.add("active-op");
 }
 
-function lowlightOperator(){
-  oldActive.classList.remove("active-op");
+function lolightOperator(){
+  for (let i = 0; i < oldActive.length; i++) {
+    oldActive[i].classList.remove("active-op");
+  }
 };
 
  // AC Clears Memory and Clears screen .io
@@ -165,7 +169,7 @@ function operate(a, b){
   showResult();
   checkIO(); // Keep the screen under 999,999,999
   operationType.value = null;
-  lowlightOperator()
+  lolightOperator();
 };
 
 

@@ -199,8 +199,7 @@ textarea:focus {
 }
 
 .active-op{
-  box-shadow: none;
-  border: 2px solid green;
+  background-color: rgb(12, 61, 62);
 }
 
 .btn-clear{
