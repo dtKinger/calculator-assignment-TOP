@@ -1,0 +1,77 @@
+.power {
+
+}
+
+.power input{
+  max-width: 30px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.power input:hover{
+  cursor: pointer;
+}
+
+.backlight{
+box-shadow: inset 0px 0px 3px 1px gold, 0px 0px 3px 1px gold;
+}
+
+.blinking-cursor {
+  font-weight: 100;
+  font-size: 40px;
+  color: #2E3D48;
+  -webkit-animation: 1s blink step-end infinite;
+  -moz-animation: 1s blink step-end infinite;
+  -ms-animation: 1s blink step-end infinite;
+  -o-animation: 1s blink step-end infinite;
+  animation: 1s blink step-end infinite;
+}
+
+.cursor-hide{
+  display: none;
+}
+
+@keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: ivory;
+  }
+}
+
+@-moz-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: ivory;
+  }
+}
+
+@-webkit-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: ivory;
+  }
+}
+
+@-ms-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: ivory;
+  }
+}
+
+@-o-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: ivory;
+  }
+}

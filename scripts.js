@@ -1,8 +1,21 @@
- /* ========================= \
+// Power button fun
+
+powerBtn = document.getElementById('range');
+blinker = document.getElementById('blinker');
+
+powerBtn.addEventListener('change', (e) =>{
+  blinker.classList.toggle('blinking-cursor');
+  blinker.classList.toggle('cursor-hide');
+  screen.classList.toggle('backlight');
+});
+
+/* ========================= \
 |     GLOBAL DECLARATIONS      |
  \ ========================= */
 
 // GETS + SELECTORS
+
+const screen = document.getElementById('screen');
 
 /// Groups
 const numkeys = document.querySelectorAll('.numkey'); // All number imput keys and the decimal
@@ -72,6 +85,7 @@ function checkIO(){
     showStored();
   }
 }
+
  /* ========================== \
 |  END OF GLOBAL DECLARATIONS   |
  \ ========================== */
