@@ -26,7 +26,7 @@ const exponentValue = document.getElementById('exponent');
 /// Operator buttons
 const clear = document.querySelector('.btn-clear');
 const equals = document.getElementById('equals');
-// const decimal = document.getElementById('decimal');
+const decimal = document.getElementById('decimal');
 
 // INITIALIZE VARIABLES
 
@@ -35,14 +35,15 @@ let result = { value: null };
 // let operationType = { value: null }; // Store the kind of operation to take place
 let operatorMem = [];
 let display = { value: inputOutput.innerText };
-let decimalSetting = { value: ''};
+let decimalSetting = { value: 'unlocked'};
 
 // FUNCTIONS
 
 function clearIO(){
   inputOutput.innerText = '';
   lolightOperator();
-  decimalSetting.value = '';
+  decimalSetting.value = 'unlocked';
+  toggleDecimal();
 };
 
 function clearMemory(){
@@ -51,7 +52,8 @@ function clearMemory(){
   result.value = null;
   operatorMem = [];
   lolightOperator();
-  // decimalSetting.value = '';
+  decimalSetting.value = 'unlocked';
+  toggleDecimal();
 };
 
 function memBlur(){
@@ -127,16 +129,19 @@ numkeys.forEach(function (numkey) {
     });
   });
 
-/*
-function checkDecimal(){
-  if (decimalSetting.value == 'clicked') return // kill it.
+function toggleDecimal(){
+  if (decimalSetting.value === 'locked'){
+    decimal.disabled = true;
+  } else if (decimalSetting.value === 'unlocked'){
+    decimal.disabled = false;
+  }
 };
 
 decimal.addEventListener('click', () => {
-  checkDecimal();
-  decimalSetting.value = 'clicked';
+  decimalSetting.value = 'locked';
+  toggleDecimal();
 });
-*/
+
 
  /* ========================= \
 |      NUMKEYS - KEYDOWN       |
