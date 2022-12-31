@@ -145,11 +145,6 @@ function unlockDecimal(){
   toggleDecimal();
 };
 
-function lockDecimal(){
-  decimalSetting.value = 'locked';
-  toggleDecimal();
-}
-
 decimal.addEventListener('click', () => {
   decimalSetting.value = 'locked';
   toggleDecimal();
