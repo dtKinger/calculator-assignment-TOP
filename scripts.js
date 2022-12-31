@@ -52,8 +52,7 @@ function clearMemory(){
   result.value = null;
   operatorMem = [];
   lolightOperator();
-  decimalSetting.value = 'unlocked';
-  toggleDecimal();
+  unlockDecimal();
 };
 
 function memBlur(){
@@ -103,6 +102,7 @@ function checkIO(){
 |       NUMKEYS - CLICKS       |
  \ ========================= */
 
+ // Lock numkeys until power is turned on
 numkeys.forEach(function (numkey) {
   numkey.disabled = true;
   powerBtn.addEventListener('change', () => {
@@ -132,10 +132,23 @@ numkeys.forEach(function (numkey) {
 function toggleDecimal(){
   if (decimalSetting.value === 'locked'){
     decimal.disabled = true;
+    decimal.classList.add('lock-decimal');
+
   } else if (decimalSetting.value === 'unlocked'){
     decimal.disabled = false;
+    decimal.classList.remove('lock-decimal');
   }
 };
+
+function unlockDecimal(){
+  decimalSetting.value = 'unlocked';
+  toggleDecimal();
+};
+
+function lockDecimal(){
+  decimalSetting.value = 'locked';
+  toggleDecimal();
+}
 
 decimal.addEventListener('click', () => {
   decimalSetting.value = 'locked';
@@ -161,6 +174,7 @@ decimal.addEventListener('click', () => {
 
  // For Calculation
 
+ // Lock operators until power is on
 operators.forEach(function (operator) {
   operator.disabled = true;
   powerBtn.addEventListener('change', () => {
@@ -181,6 +195,7 @@ operators.forEach(function (operator) {
       operate();
     } else {
       clearIO();
+      unlockDecimal();
     }
   });
 });
@@ -244,7 +259,7 @@ equals.addEventListener('click', () => {
   memory = [];
   display.value = null;
   lolightOperator();
-  // decimalSetting.value = '';
+  unlockDecimal();
 });
 
 
