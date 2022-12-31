@@ -161,7 +161,8 @@ decimal.addEventListener('click', () => {
 // + is shift+187 while = is 187
 // Or just return the event.key after checking if shiftKey: true.
 
-const numbersRegex = /[0-9]/;
+// Use regex to only allow numbers and . onto the screen. 
+const numbersRegex = /[0-9.]/;
 window.addEventListener('keydown', function(e){
   const keypress = document.querySelector(`.numkey[value="${e.key}"]`);
   if (e.key.match(numbersRegex)){
