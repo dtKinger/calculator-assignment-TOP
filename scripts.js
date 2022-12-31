@@ -170,10 +170,6 @@ window.addEventListener('keydown', function(e){
  }
 });
 
-
-
-
-
  /* ========================== \
 |         END OF NUMKEYS        |
  \ ========================== */
@@ -201,7 +197,7 @@ operators.forEach(function (operator) {
 // Unlocked Operator functionality
 operators.forEach(function (operator) {
   operator.addEventListener('click', function(e) {
-    memory.push(parseFloat(inputOutput.innerText));
+    memory.push(inputOutput.innerText);
     operatorMem.push(operator.getAttribute('id'));
     if (memory[memory.length-2] != undefined && memory[memory.length-1] != undefined){
       operate();
@@ -210,6 +206,21 @@ operators.forEach(function (operator) {
       unlockDecimal();
     }
   });
+});
+
+const operatorsRegex = /[\+\=\/\*\-]/;
+window.addEventListener('keydown', function(e){
+  const operation = document.querySelector(`.operator[id="${e.key}"]`);
+  if (e.key.match(operatorsRegex)){
+    memory.push(inputOutput.innerText);
+    operatorMem.push(e.key);
+    if (memory[memory.length-2] != undefined && memory[memory.length-1] != undefined){
+      operate();
+    } else {
+      clearIO();
+      unlockDecimal();
+    }
+  }
 });
 
 /* Not sure if I'll need this or not
