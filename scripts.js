@@ -115,6 +115,7 @@ numkeys.forEach(function (numkey) {
   });
 });
 
+// Take input on key clicks
 numkeys.forEach(function (numkey) {
   numkey.addEventListener('click', function() {
     // If there is a result.value is on screen,
@@ -126,8 +127,8 @@ numkeys.forEach(function (numkey) {
     inputOutput.innerText += numkey.getAttribute('value');
     // display.value = inputOutput.innerText; - may not need this anymore
     checkIO();
-    });
   });
+});
 
 function toggleDecimal(){
   if (decimalSetting.value === 'locked'){
@@ -154,6 +155,20 @@ decimal.addEventListener('click', () => {
  /* ========================= \
 |      NUMKEYS - KEYDOWN       |
  \ ========================= */
+
+// Note: Need to handle for keys that require shift+
+// e.g. 8 is keycode 56 and &times; is 56 'shiftKey': true;
+// + is shift+187 while = is 187
+// Or just return the event.key after checking if shiftKey: true.
+
+const numbersRegex = /[0-9]/;
+window.addEventListener('keydown', function(e){
+  const keypress = document.querySelector(`.numkey[value="${e.key}"]`);
+  if (e.key.match(numbersRegex)){
+  inputOutput.innerText += e.key;
+ }
+});
+
 
 
 
@@ -182,6 +197,7 @@ operators.forEach(function (operator) {
   });
 });
 
+// Unlocked Operator functionality
 operators.forEach(function (operator) {
   operator.addEventListener('click', function(e) {
     memory.push(parseFloat(inputOutput.innerText));
@@ -194,6 +210,26 @@ operators.forEach(function (operator) {
     }
   });
 });
+
+/* Not sure if I'll need this or not
+// Document Keydown event for Operators
+document.addEventListener('keydown', function(e){
+  if (e.key.match(operatorRegex)){
+    return false;
+  }
+  if(e.key == 'Enter') {
+    e.preventDefault();
+  } else if (e.key == 'Shift') {
+    return false;
+  } else if (e.key == 'Backspace') {
+    e.preventDefault();
+  }
+});
+*/
+  
+// const operatorPress = document.querySelector(`.operator[value="${e.key}"]`);
+
+
 
 // For Style
 for (let i = 0; i < operators.length; i++) {
