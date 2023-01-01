@@ -4,4 +4,4 @@
 
 **[Use the Calculator here](https://dtkinger.github.io/calculator-assignment-TOP/)**. It's an older model, be gentle with it and don't forget to **turn it on!**
 
-**Enter Key not currently working, please click or tap equals :D**
+**Return/Enter Key is under construction, please click or tap equals for now:D**
