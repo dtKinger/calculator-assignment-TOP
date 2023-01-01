@@ -210,7 +210,7 @@ operators.forEach(function (operator) {
 
 const operatorsRegex = /[\+\=\/\*\-]/;
 window.addEventListener('keydown', function(e){
-  const operation = document.querySelector(`.operator`);
+  const operation = document.querySelector(`.operator[id="${e.key}"]`);
   if (e.key.match(operatorsRegex)){
     memory.push(inputOutput.innerText);
     operatorMem.push(e.key);
@@ -223,13 +223,24 @@ window.addEventListener('keydown', function(e){
   }
 });
 
-equals.addEventListener('keydown', (e) => {
-  console.log(e);
-  memory = [];
-  display.value = null;
-  lolightOperator();
-  unlockDecimal();
+/* Not sure if I'll need this or not
+// Document Keydown event for Operators
+document.addEventListener('keydown', function(e){
+  if (e.key.match(operatorRegex)){
+    return false;
+  }
+  if(e.key == 'Enter') {
+    e.preventDefault();
+  } else if (e.key == 'Shift') {
+    return false;
+  } else if (e.key == 'Backspace') {
+    e.preventDefault();
+  }
 });
+*/
+  
+// const operatorPress = document.querySelector(`.operator[value="${e.key}"]`);
+
 
 
 // For Style
@@ -265,13 +276,13 @@ function operate(a, b){
   } else if (operatorMem[operatorMem.length-1] == operatorMem[operatorMem.length-2]){
     operator = operatorMem[operatorMem.length-1];
   };
-  if (operator == 'plus' || operator == "+"){
+  if (operator == 'plus'){
     result.value = a + b;
-  } else if (operator == 'minus' || operator == "-"){
+  } else if (operator == 'minus'){
     result.value = a - b;
-  } else if (operator == 'multiplies' || operator == "*"){
+  } else if (operator == 'multiplies'){
     result.value = a * b;
-  } else if (operator == 'divides' || operator == "/"){
+  } else if (operator == 'divides'){
     result.value = a / b;
   }
 
