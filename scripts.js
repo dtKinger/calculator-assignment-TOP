@@ -55,10 +55,16 @@ function clearMemory(){
   unlockDecimal();
 };
 
+function checkMemory(){
+  operator = null;
+
+};
+
 function memBlur(){
   clearIO();
   clearMemory();
 };
+
 
 // Stored is the most recent item commited to memory.
 function showStored(){
@@ -161,14 +167,30 @@ decimal.addEventListener('click', () => {
 // + is shift+187 while = is 187
 // Or just return the event.key after checking if shiftKey: true.
 
+// const keypress = document.querySelector(`.equals[value="${e.key}"]`);
+
 // Use regex to only allow numbers and . onto the screen. 
 const numbersRegex = /[0-9.]/;
+const operatorsRegex = /[\+\=\/\*\-]/;
+const equalsRegex = "Enter";
+// What kind of key was pressed? Numkey, Operator, or Equals?
 window.addEventListener('keydown', function(e){
-  // const keypress = document.querySelector(`.btn[value="${e.key}"]`);
-  //const keypress = document.querySelector('.btn');
   if (e.key.match(numbersRegex)){
   inputOutput.innerText += e.key;
+  } else if (e.key.match(operatorsRegex)){
+    memory.push(inputOutput.innerText);
+    operatorMem.push(e.key);
+    if (memory[memory.length-2] != undefined && memory[memory.length-1] != undefined){
+      operate();
+    } else {
+      clearIO();
+      unlockDecimal();
+    }
+  } else if (e.key.match(equalsRegex)){
+    operatorMem.push("equals");
+    equate();
   }
+  console.log(`You pressed the ${e.key} key.`)
 });
 
  /* ========================== \
@@ -207,21 +229,6 @@ operators.forEach(function (operator) {
       unlockDecimal();
     }
   });
-});
-
-const operatorsRegex = /[\+\=\/\*\-]/;
-window.addEventListener('keydown', function(e){
-  const operation = document.querySelector(`.operator[id="${e.key}"]`);
-  if (e.key.match(operatorsRegex)){
-    memory.push(inputOutput.innerText);
-    operatorMem.push(e.key);
-    if (memory[memory.length-2] != undefined && memory[memory.length-1] != undefined){
-      operate();
-    } else {
-      clearIO();
-      unlockDecimal();
-    }
-  }
 });
 
 /* Not sure if I'll need this or not
@@ -290,9 +297,9 @@ function operate(a, b){
   memory.push(parseFloat(result.value));
   showResult();
   checkIO(); // Keep the screen under 999,999,999
+  //settleMemory();
   operator = null;
   lolightOperator();
-  // decimalSetting.value = '';
   
 };
 
@@ -312,14 +319,7 @@ equals.addEventListener('click', () => {
 });
 
 // Use regex to only allow numbers and . onto the screen. 
-const equalsRegex = "Enter";
-window.addEventListener('keydown', function(e){
-  const keypress = document.querySelector(`.equals[value="${e.key}"]`);
-  if (e.key.match(equalsRegex)){
-    equate();
- }
- console.log(`You pressed ${e.key}`)
-});
+
 
 
  /* ========================== \
