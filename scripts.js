@@ -56,20 +56,12 @@ function clearMemory(){
 };
 
 // Fun fact - first attempt at a recursive function.
-function settleMemory(){
-  if (memory.length > 4) {
-    memory = memory.shift();
-    for (let i = 0; i > 4; i--){
-      settleMemory();
-    }
+/* function settleMemory(){
+  if (memory.length > 4){
+  memory = memory.shift();
   }
 };
-
-function commitIO(){
-if (inputOutput.innerHTML != ''){
-  memory.push(inputOutput.innerText);
-  }
-}
+*/
 
 function memBlur(){
   clearIO();
@@ -195,7 +187,7 @@ window.addEventListener('keydown', function(e){
   */ 
   } else if (e.key.match(operatorsRegex)){
     if (inputOutput.innerHTML != ''){
-    memory.push(inputOutput.innerText);
+    memory.push(parseFloat(inputOutput.innerText));
     operatorMem.push(e.key);
     }
     if (memory[memory.length-2] != undefined && memory[memory.length-1] != undefined){
@@ -235,7 +227,9 @@ operators.forEach(function (operator) {
 // Unlocked Operator functionality
 operators.forEach(function (operator) {
   operator.addEventListener('click', function(e) {
-    commitIO(); // If input/output is not empty only.
+    if (inputOutput.innerText != ''){
+      memory.push(parseFloat(inputOutput.innerText));
+    }
     operatorMem.push(operator.getAttribute('id'));
     if (memory[memory.length-2] != undefined && memory[memory.length-1] != undefined){
       operate();
@@ -313,7 +307,7 @@ function operate(a, b){
   showResult();
   checkIO(); // Keep the screen under 999,999,999
   // operator = null; Pretty sure I don't need this. 
-  settleMemory(); // Recursive function to keep memory array down to length of 4.
+  // settleMemory(); // Recursive function to keep memory array down to length of 4.
   lolightOperator(); // Remove CSS styles for highlighted operator.
 };
 
