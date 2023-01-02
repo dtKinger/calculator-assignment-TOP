@@ -56,12 +56,12 @@ function clearMemory(){
 };
 
 // Fun fact - first attempt at a recursive function.
-/* function settleMemory(){
-  if (memory.length > 4){
-  memory = memory.shift();
+function settleMemory(){
+  while (memory.length > 4){
+    memory.shift();
   }
 };
-*/
+
 
 function memBlur(){
   clearIO();
