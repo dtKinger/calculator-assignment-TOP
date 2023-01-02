@@ -60,6 +60,9 @@ function settleMemory(){
   while (memory.length > 4){
     memory.shift();
   }
+  while (operatorMem.length > 4){
+    operatorMem.shift();
+  }
 };
 
 
@@ -130,7 +133,7 @@ numkeys.forEach(function (numkey) {
       result.value = null;
     }
     inputOutput.innerText += numkey.getAttribute('value');
-    // display.value = inputOutput.innerText; - may not need this anymore
+    // display.value = inputOutput.innerText;  may not need this anymore
     checkIO();
   });
 });
@@ -171,16 +174,16 @@ decimal.addEventListener('click', () => {
 // Use regex to only allow numbers and . onto the screen. 
 const numbersRegex = /[0-9.]/;
 const operatorsRegex = /[\+\=\/\*\-]/;
-// const equalsRegex = "Enter";
+const equalsRegex = "Enter";
 // What kind of key was pressed? Numkey, Operator, or Equals?
 window.addEventListener('keydown', function(e){
   if (e.key.match(numbersRegex)){
   inputOutput.innerText += e.key;
-  /* Equals needs to execute like an operator
+  // Equals needs to execute like an operator
   } else if (e.key.match(equalsRegex)){
     operatorMem.push("equals");
     equate();
-  */ 
+
   } else if (e.key.match(operatorsRegex)){
     if (inputOutput.innerHTML != ''){
     memory.push(parseFloat(inputOutput.innerText));
@@ -285,6 +288,8 @@ function operate(a, b){
   b = parseFloat(memory[memory.length-1]);
   console.log(operatorMem);
   console.log(memory);
+  console.log(display);
+  console.log(inputOutput);
   if (operatorMem[operatorMem.length-1] != operatorMem[operatorMem.length-2]){
     operator = operatorMem[operatorMem.length-2];
   } else if (operatorMem[operatorMem.length-1] == operatorMem[operatorMem.length-2]){
@@ -303,7 +308,7 @@ function operate(a, b){
   memory.push(parseFloat(result.value));
   showResult();
   checkIO(); // Keep the screen under 999,999,999
-  // operator = null; Pretty sure I don't need this. 
+  operator = null; //Pretty sure I don't need this. 
   settleMemory(); // Recursive function to keep memory array down to length of 4.
   lolightOperator(); // Remove CSS styles for highlighted operator.
 };
