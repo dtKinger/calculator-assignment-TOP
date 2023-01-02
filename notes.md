@@ -6,4 +6,5 @@
 
 TO DO:
 1. Handle numbers divided by 0.
-2. Handle Keypresses.
+2. Handle Keypresses for decimal and AC (esc)
+3. Add support for backspace and -= properly from the IO.
