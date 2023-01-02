@@ -55,10 +55,21 @@ function clearMemory(){
   unlockDecimal();
 };
 
-function checkMemory(){
-  operator = null;
-
+// Fun fact - first attempt at a recursive function.
+function settleMemory(){
+  if (memory.length > 4) {
+    memory = memory.shift();
+    for (let i = 0; i > 4; i--){
+      settleMemory();
+    }
+  }
 };
+
+function commitIO(){
+if (inputOutput.innerHTML != ''){
+  memory.push(inputOutput.innerText);
+  }
+}
 
 function memBlur(){
   clearIO();
@@ -172,23 +183,27 @@ decimal.addEventListener('click', () => {
 // Use regex to only allow numbers and . onto the screen. 
 const numbersRegex = /[0-9.]/;
 const operatorsRegex = /[\+\=\/\*\-]/;
-const equalsRegex = "Enter";
+// const equalsRegex = "Enter";
 // What kind of key was pressed? Numkey, Operator, or Equals?
 window.addEventListener('keydown', function(e){
   if (e.key.match(numbersRegex)){
   inputOutput.innerText += e.key;
+  /* Equals needs to execute like an operator
+  } else if (e.key.match(equalsRegex)){
+    operatorMem.push("equals");
+    equate();
+  */ 
   } else if (e.key.match(operatorsRegex)){
+    if (inputOutput.innerHTML != ''){
     memory.push(inputOutput.innerText);
     operatorMem.push(e.key);
+    }
     if (memory[memory.length-2] != undefined && memory[memory.length-1] != undefined){
       operate();
     } else {
       clearIO();
       unlockDecimal();
     }
-  } else if (e.key.match(equalsRegex)){
-    operatorMem.push("equals");
-    equate();
   }
   console.log(`You pressed the ${e.key} key.`)
 });
@@ -220,7 +235,7 @@ operators.forEach(function (operator) {
 // Unlocked Operator functionality
 operators.forEach(function (operator) {
   operator.addEventListener('click', function(e) {
-    memory.push(inputOutput.innerText);
+    commitIO(); // If input/output is not empty only.
     operatorMem.push(operator.getAttribute('id'));
     if (memory[memory.length-2] != undefined && memory[memory.length-1] != undefined){
       operate();
@@ -297,10 +312,9 @@ function operate(a, b){
   memory.push(parseFloat(result.value));
   showResult();
   checkIO(); // Keep the screen under 999,999,999
-  //settleMemory();
-  operator = null;
-  lolightOperator();
-  
+  // operator = null; Pretty sure I don't need this. 
+  settleMemory(); // Recursive function to keep memory array down to length of 4.
+  lolightOperator(); // Remove CSS styles for highlighted operator.
 };
 
 // equals also works with the operate() function
