@@ -26,7 +26,6 @@ const exponentValue = document.getElementById('exponent');
 /// Operator buttons
 const clear = document.querySelector('.btn-clear');
 const equals = document.getElementById('equals');
-const enter = document.getElementById('equals');
 const decimal = document.getElementById('decimal');
 
 // INITIALIZE VARIABLES
@@ -165,11 +164,11 @@ decimal.addEventListener('click', () => {
 // Use regex to only allow numbers and . onto the screen. 
 const numbersRegex = /[0-9.]/;
 window.addEventListener('keydown', function(e){
-  const keypress = document.querySelector(`.numkey[value="${e.key}"]`);
+  // const keypress = document.querySelector(`.btn[value="${e.key}"]`);
+  //const keypress = document.querySelector('.btn');
   if (e.key.match(numbersRegex)){
   inputOutput.innerText += e.key;
- }
- console.log(`You pressed ${e.key}`)
+  }
 });
 
  /* ========================== \
@@ -300,19 +299,28 @@ function operate(a, b){
 // equals also works with the operate() function
 // since it's included in the operator list.
 // But loads the previous operator from memory.
-equals.addEventListener('click', () => {
+
+function equate(){
   memory = [];
   display.value = null;
   lolightOperator();
   unlockDecimal();
+};
+
+equals.addEventListener('click', () => {
+  equate();
 });
 
-enter.addEventListener('keydown', (e) => {
-  memory = [];
-  display.value = null;
-  lolightOperator();
-  unlockDecimal();
+// Use regex to only allow numbers and . onto the screen. 
+const equalsRegex = "Enter";
+window.addEventListener('keydown', function(e){
+  const keypress = document.querySelector(`.equals[value="${e.key}"]`);
+  if (e.key.match(equalsRegex)){
+    equate();
+ }
+ console.log(`You pressed ${e.key}`)
 });
+
 
  /* ========================== \
 |        END OF OPERATORS       |
