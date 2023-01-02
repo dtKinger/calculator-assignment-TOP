@@ -160,17 +160,11 @@ decimal.addEventListener('click', () => {
 |      NUMKEYS - KEYDOWN       |
  \ ========================= */
 
-// Note: Need to handle for keys that require shift+
-// e.g. 8 is keycode 56 and &times; is 56 'shiftKey': true;
-// + is shift+187 while = is 187
-// Or just return the event.key after checking if shiftKey: true.
-
-// const keypress = document.querySelector(`.equals[value="${e.key}"]`);
-
-// Use regex to only allow numbers and . onto the screen. 
+// Use regex to filter what kind of key was pressed.
 const numbersRegex = /[0-9.]/;
 const operatorsRegex = /[\+\=\/\*\-]/;
 const equalsRegex = "Enter";
+
 // What kind of key was pressed? Numkey, Operator, or Equals?
 window.addEventListener('keydown', function(e){
   if (e.key.match(numbersRegex)){
@@ -180,19 +174,23 @@ window.addEventListener('keydown', function(e){
     }
     inputOutput.innerText += e.key;
     checkIO();
-  } else if (e.key.match(operatorsRegex) || e.key.match(equalsRegex)){
-      if (inputOutput.innerText != ''){
+    } else if (e.key.match(operatorsRegex)
+    || e.key.match(equalsRegex)){
+      if (inputOutput.innerText != ''
+        && inputOutput.innerText != '.'){
         memory.push(parseFloat(inputOutput.innerText));
         operatorMem.push(e.key);
       }
-      if (memory[memory.length-2] != undefined && memory[memory.length-1] != undefined){
+      if (memory[memory.length-2] != undefined
+        && memory[memory.length-1] != undefined){
         operate();
       } else {
         clearIO();
         unlockDecimal();
       }
+    } else if (e.key.match(equalsRegex)){
+    e.preventDefault();
   }
-  //console.log(`You pressed the ${e.key} key.`)
 });
 
  /* ========================== \
