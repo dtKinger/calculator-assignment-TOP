@@ -140,8 +140,8 @@ function toggleDecimal(){
     decimal.classList.add('lock-decimal');
 
   } else if (decimalSetting.value === 'unlocked'){
-    decimal.disabled = false;
     decimal.classList.remove('lock-decimal');
+    decimal.disabled = false;
   }
 };
 
@@ -180,22 +180,17 @@ window.addEventListener('keydown', function(e){
     }
     inputOutput.innerText += e.key;
     checkIO();
-  // Equals needs to execute like an operator
-  } else if (e.key.match(equalsRegex)){
-    operatorMem.push("equals");
-    equate();
-
-  } else if (e.key.match(operatorsRegex)){
-    if (inputOutput.innerText != ''){
-    memory.push(parseFloat(inputOutput.innerText));
-    operatorMem.push(e.key);
-    }
-    if (memory[memory.length-2] != undefined && memory[memory.length-1] != undefined){
-      operate();
-    } else {
-      clearIO();
-      unlockDecimal();
-    }
+  } else if (e.key.match(operatorsRegex) || e.key.match(equalsRegex)){
+      if (inputOutput.innerText != ''){
+        memory.push(parseFloat(inputOutput.innerText));
+        operatorMem.push(e.key);
+      }
+      if (memory[memory.length-2] != undefined && memory[memory.length-1] != undefined){
+        operate();
+      } else {
+        clearIO();
+        unlockDecimal();
+      }
   }
   //console.log(`You pressed the ${e.key} key.`)
 });
@@ -227,6 +222,7 @@ operators.forEach(function (operator) {
 // Unlocked Operator functionality
 operators.forEach(function (operator) {
   operator.addEventListener('click', function(e) {
+    unlockDecimal();
     if (inputOutput.innerText != ''){
       memory.push(parseFloat(inputOutput.innerText));
     }
@@ -239,25 +235,6 @@ operators.forEach(function (operator) {
     }
   });
 });
-
-/* Not sure if I'll need this or not
-// Document Keydown event for Operators
-document.addEventListener('keydown', function(e){
-  if (e.key.match(operatorRegex)){
-    return false;
-  }
-  if(e.key == 'Enter') {
-    e.preventDefault();
-  } else if (e.key == 'Shift') {
-    return false;
-  } else if (e.key == 'Backspace') {
-    e.preventDefault();
-  }
-});
-*/
-  
-// const operatorPress = document.querySelector(`.operator[value="${e.key}"]`);
-
 
 
 // For Operation Style
