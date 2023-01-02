@@ -174,7 +174,12 @@ const equalsRegex = "Enter";
 // What kind of key was pressed? Numkey, Operator, or Equals?
 window.addEventListener('keydown', function(e){
   if (e.key.match(numbersRegex)){
-  inputOutput.innerText += e.key;
+    if (result.value != null){
+      clearIO();  
+      result.value = null;
+    }
+    inputOutput.innerText += e.key;
+    checkIO();
   // Equals needs to execute like an operator
   } else if (e.key.match(equalsRegex)){
     operatorMem.push("equals");
