@@ -284,6 +284,7 @@ function operate(a, b){
   a = parseFloat(memory[memory.length-2]);
   b = parseFloat(memory[memory.length-1]);
   console.log(operatorMem);
+  console.log(memory);
   if (operatorMem[operatorMem.length-1] != operatorMem[operatorMem.length-2]){
     operator = operatorMem[operatorMem.length-2];
   } else if (operatorMem[operatorMem.length-1] == operatorMem[operatorMem.length-2]){
@@ -303,7 +304,7 @@ function operate(a, b){
   showResult();
   checkIO(); // Keep the screen under 999,999,999
   // operator = null; Pretty sure I don't need this. 
-  // settleMemory(); // Recursive function to keep memory array down to length of 4.
+  settleMemory(); // Recursive function to keep memory array down to length of 4.
   lolightOperator(); // Remove CSS styles for highlighted operator.
 };
 
