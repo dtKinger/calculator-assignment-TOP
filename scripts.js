@@ -314,6 +314,7 @@ function operate(a, b){
 
 function equate(){
   memory = [];
+  operatorMem = [];
   display.value = null;
   lolightOperator();
   unlockDecimal();
