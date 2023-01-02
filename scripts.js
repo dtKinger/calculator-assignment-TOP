@@ -78,7 +78,7 @@ function showStored(){
   }
 }
 
-// The Result of a calculation
+// The Result of a calculation, use decimal if needed.
 function showResult(){
   if (result.value * 10 % 10 != 0){
     inputOutput.innerText = (result.value).toFixed(2);
@@ -86,10 +86,6 @@ function showResult(){
     inputOutput.innerText = result.value;
   }
 }
-
-function emptyResults(){
-  result.value = null;
-};
 
 // inputOutput Observer
 function checkIO(){
@@ -130,8 +126,8 @@ numkeys.forEach(function (numkey) {
     // If there is a result.value is on screen,
     // clear it the next time a number is entered
     if (result.value != null){
-      clearIO();
-      emptyResults();
+      clearIO();  
+      result.value = null;
     }
     inputOutput.innerText += numkey.getAttribute('value');
     // display.value = inputOutput.innerText; - may not need this anymore
