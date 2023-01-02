@@ -26,6 +26,7 @@ const exponentValue = document.getElementById('exponent');
 /// Operator buttons
 const clear = document.querySelector('.btn-clear');
 const equals = document.getElementById('equals');
+const enter = document.getElementById('equals');
 const decimal = document.getElementById('decimal');
 
 // INITIALIZE VARIABLES
@@ -168,6 +169,7 @@ window.addEventListener('keydown', function(e){
   if (e.key.match(numbersRegex)){
   inputOutput.innerText += e.key;
  }
+ console.log(`You pressed ${e.key}`)
 });
 
  /* ========================== \
@@ -243,7 +245,7 @@ document.addEventListener('keydown', function(e){
 
 
 
-// For Style
+// For Operation Style
 for (let i = 0; i < operators.length; i++) {
   operators[i].addEventListener("click", changeButton);
 }
@@ -270,19 +272,19 @@ clear.addEventListener('click', () => {
 function operate(a, b){
   a = parseFloat(memory[memory.length-2]);
   b = parseFloat(memory[memory.length-1]);
-  
+  console.log(operatorMem);
   if (operatorMem[operatorMem.length-1] != operatorMem[operatorMem.length-2]){
     operator = operatorMem[operatorMem.length-2];
   } else if (operatorMem[operatorMem.length-1] == operatorMem[operatorMem.length-2]){
     operator = operatorMem[operatorMem.length-1];
   };
-  if (operator == 'plus'){
+  if (operator == 'plus' || operator == '+'){
     result.value = a + b;
-  } else if (operator == 'minus'){
+  } else if (operator == 'minus' || operator == '-'){
     result.value = a - b;
-  } else if (operator == 'multiplies'){
+  } else if (operator == 'multiplies' || operator == '*'){
     result.value = a * b;
-  } else if (operator == 'divides'){
+  } else if (operator == 'divides' || operator == '/'){
     result.value = a / b;
   }
 
@@ -305,6 +307,12 @@ equals.addEventListener('click', () => {
   unlockDecimal();
 });
 
+enter.addEventListener('keydown', (e) => {
+  memory = [];
+  display.value = null;
+  lolightOperator();
+  unlockDecimal();
+});
 
  /* ========================== \
 |        END OF OPERATORS       |
