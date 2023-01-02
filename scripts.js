@@ -185,7 +185,7 @@ window.addEventListener('keydown', function(e){
     equate();
 
   } else if (e.key.match(operatorsRegex)){
-    if (inputOutput.innerHTML != ''){
+    if (inputOutput.innerText != ''){
     memory.push(parseFloat(inputOutput.innerText));
     operatorMem.push(e.key);
     }
@@ -286,10 +286,15 @@ clear.addEventListener('click', () => {
 function operate(a, b){
   a = parseFloat(memory[memory.length-2]);
   b = parseFloat(memory[memory.length-1]);
-  console.log(operatorMem);
-  console.log(memory);
-  console.log(display);
-  console.log(inputOutput);
+  console.log("result: " + result);
+  console.log("result.value: " + result.value);
+  console.log("operatorMem: " + operatorMem);
+  console.log("memory: " + memory);
+  console.log("display: " + display);
+  console.log("display.value: " + display.value);
+  console.log("inputOutput: " + inputOutput);
+  console.log("inputOutput.innerText: " + inputOutput.innerText);
+
   if (operatorMem[operatorMem.length-1] != operatorMem[operatorMem.length-2]){
     operator = operatorMem[operatorMem.length-2];
   } else if (operatorMem[operatorMem.length-1] == operatorMem[operatorMem.length-2]){
