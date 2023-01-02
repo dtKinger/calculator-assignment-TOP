@@ -176,6 +176,9 @@ window.addEventListener('keydown', function(e){
     checkIO();
     } else if (e.key.match(operatorsRegex)
     || e.key.match(equalsRegex)){
+      if (e.key.match(equalsRegex)){
+        e.preventDefault();
+      }
       if (inputOutput.innerText != ''
         && inputOutput.innerText != '.'){
         memory.push(parseFloat(inputOutput.innerText));
@@ -183,13 +186,11 @@ window.addEventListener('keydown', function(e){
       }
       if (memory[memory.length-2] != undefined
         && memory[memory.length-1] != undefined){
-        operate();
+          operate();
       } else {
         clearIO();
         unlockDecimal();
       }
-    } else if (e.key.match(equalsRegex)){
-    e.preventDefault();
   }
 });
 
