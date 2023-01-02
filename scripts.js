@@ -32,9 +32,7 @@ const decimal = document.getElementById('decimal');
 
 let memory = []; // Stored and evaluate are mutable not like 
 let result = { value: null };
-// let operationType = { value: null }; // Store the kind of operation to take place
 let operatorMem = [];
-let display = { value: inputOutput.innerText };
 let decimalSetting = { value: 'unlocked'};
 
 // FUNCTIONS
@@ -48,7 +46,6 @@ function clearIO(){
 
 function clearMemory(){
   memory = [];
-  display.value = null;
   result.value = null;
   operatorMem = [];
   lolightOperator();
@@ -133,7 +130,6 @@ numkeys.forEach(function (numkey) {
       result.value = null;
     }
     inputOutput.innerText += numkey.getAttribute('value');
-    // display.value = inputOutput.innerText;  may not need this anymore
     checkIO();
   });
 });
@@ -196,7 +192,7 @@ window.addEventListener('keydown', function(e){
       unlockDecimal();
     }
   }
-  console.log(`You pressed the ${e.key} key.`)
+  //console.log(`You pressed the ${e.key} key.`)
 });
 
  /* ========================== \
@@ -290,8 +286,6 @@ function operate(a, b){
   console.log("result.value: " + result.value);
   console.log("operatorMem: " + operatorMem);
   console.log("memory: " + memory);
-  console.log("display: " + display);
-  console.log("display.value: " + display.value);
   console.log("inputOutput: " + inputOutput);
   console.log("inputOutput.innerText: " + inputOutput.innerText);
 
@@ -325,7 +319,6 @@ function operate(a, b){
 function equate(){
   memory = [];
   operatorMem = [];
-  display.value = null;
   lolightOperator();
   unlockDecimal();
 };
