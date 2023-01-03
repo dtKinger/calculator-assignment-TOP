@@ -161,10 +161,10 @@ decimal.addEventListener('click', () => {
  \ ========================= */
 
 // Use regex to filter what kind of key was pressed.
-const numbersRegex = /[0-9.]/;
+const numbersRegex = /[0-9]/;
 const operatorsRegex = /[\+\=\/\*\-]/;
 const equalsRegex = "Enter";
-const decimalRegex = '.';
+const decimalRegex = /\./;
 
 // What kind of key was pressed? Numkey, Operator, or Equals?
 window.addEventListener('keydown', function(e){
@@ -176,8 +176,11 @@ window.addEventListener('keydown', function(e){
     inputOutput.innerText += e.key;
     checkIO();
     } else if (e.key.match(decimalRegex)){
+      console.log(e.key);
       decimalSetting.value = 'locked';
       toggleDecimal();
+      inputOutput.innerText += e.key;
+      checkIO();
     } else if (e.key.match(operatorsRegex)
     || e.key.match(equalsRegex)){
       if (e.key.match(equalsRegex)){
