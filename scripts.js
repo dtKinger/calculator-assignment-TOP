@@ -164,8 +164,8 @@ instead of having it's own operator, e.g. eval().
 */
 
 function equate(){
-  memory = [];
-  operatorMem = [];
+  // memory = [];
+  // operatorMem = [];
   lolightOperator();
   unlockDecimal();
 };
