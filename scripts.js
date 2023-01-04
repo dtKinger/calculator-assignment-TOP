@@ -270,6 +270,19 @@ operators.forEach(function (operator) {
   });
 });
 
+// Auto-calculate for Exponent and Square root.
+
+autoCalcBtn.forEach(function (i){
+  i.addEventListener('click', () => {
+    if (inputOutput.innerText != ''
+    && inputOutput.innerText != '.'){
+      memory.push(parseFloat(inputOutput.innerText));
+      operatorMem.push(i.getAttribute('id'));
+    }
+    autoCalc();
+  });
+});
+
 
 // For Operation Style
 for (let i = 0; i < operators.length; i++) {
