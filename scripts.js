@@ -27,6 +27,7 @@ const exponentValue = document.getElementById('exponent');
 const clear = document.querySelector('.btn-clear');
 const equals = document.getElementById('equals');
 const decimal = document.getElementById('decimal');
+const autoCalcBtn = document.querySelectorAll('.auto-calc');
 
 // INITIALIZE VARIABLES
 
@@ -147,6 +148,25 @@ function operate(a, b){
     result.value = a * b;
   } else if (operator == 'divides' || operator == '/'){
     result.value = a / b;
+
+    memory.push(parseFloat(result.value));
+    showResult();
+    checkIO(); // Keep the screen under 999,999,999
+    operator = null; //Pretty sure I don't need this. 
+    settleMemory(); // Recursive function to keep memory array down to length of 4.
+    lolightOperator(); // Remove CSS styles for highlighted operator.
+  };
+}
+
+function autoCalc(a){
+  a = parseFloat(memory[memory.length-1]);
+  if (operatorMem[operatorMem.length-1] != null){
+    operator = operatorMem[operatorMem.length-1];
+    if (operator == 'sqrt'){
+      result.value = Math.sqrt(a);
+    } else if (operator == 'exponent'){
+      result.value = a * a;
+    }
   }
 
   memory.push(parseFloat(result.value));
@@ -154,7 +174,7 @@ function operate(a, b){
   checkIO(); // Keep the screen under 999,999,999
   operator = null; //Pretty sure I don't need this. 
   settleMemory(); // Recursive function to keep memory array down to length of 4.
-  lolightOperator(); // Remove CSS styles for highlighted operator.
+  lolightOperator(); 
 };
 
 /* Equals also works with the operate() function
@@ -250,6 +270,18 @@ operators.forEach(function (operator) {
   });
 });
 
+// Auto-calculate for Exponent and Square root.
+
+autoCalcBtn.forEach(function (i){
+  i.addEventListener('click', () => {
+    if (inputOutput.innerText != ''
+    && inputOutput.innerText != '.'){
+      memory.push(parseFloat(inputOutput.innerText));
+      operatorMem.push(i.getAttribute('id'));
+    }
+    autoCalc();
+  });
+});
 
 // For Operation Style
 for (let i = 0; i < operators.length; i++) {

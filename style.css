@@ -160,7 +160,7 @@ button{
   overflow: hidden;
 }
 
-#exponent {
+#exponent-display {
   font-family: "DigitalDismay";
   font-size: 2.5rem;
   font-weight: 100;
@@ -178,7 +178,7 @@ button{
   gap: 6px;
 }
 
-.numkey, .operator, .equals, .btn-clear, .backspace{
+.numkey, .operator, .equals, .btn-clear, .backspace, .auto-calc{
   flex: 1;
   opacity: .925;
   color: ivory;
@@ -196,7 +196,7 @@ button{
   background-color:rgb(56, 56, 56);
 }
 
-.operator{
+.operator, .auto-calc{
   background-color: rgb(225, 155, 132);
 }
 
@@ -215,9 +215,6 @@ button{
   font-size: 24px;
 }
 
-.exponent, .sqrt {
-}
-
 .equals, .backspace{
 background-color: ivory;
 color:rgb(56, 56, 56);
@@ -231,7 +228,7 @@ box-shadow: 1px 1px 1px 1px rgb(56, 56, 56)
 
 @media screen and (max-width: 400px){
 
-  .numkey, .operator, .equals, .btn-clear{
+  .numkey, .operator, .equals, .btn-clear, .backspace, .auto-calc{
     font-size: 1.2rem;
     width: 60px;
     height: 60px;
