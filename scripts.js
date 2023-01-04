@@ -211,8 +211,9 @@ function lolightOperator(){
   }
 };
 
- // AC Clears Memory and Clears screen .io
-clear.addEventListener('click', () => {
+
+// AC Clears Memory and Clears screen .io
+ clear.addEventListener('click', () => {
   memBlur();
 });
 
@@ -221,12 +222,14 @@ clear.addEventListener('click', () => {
 function operate(a, b){
   a = parseFloat(memory[memory.length-2]);
   b = parseFloat(memory[memory.length-1]);
+  /* ENABLE FOR DEV ONLY
   console.log("result: " + result);
   console.log("result.value: " + result.value);
   console.log("operatorMem: " + operatorMem);
   console.log("memory: " + memory);
   console.log("inputOutput: " + inputOutput);
   console.log("inputOutput.innerText: " + inputOutput.innerText);
+  */
 
   if (operatorMem[operatorMem.length-1] != operatorMem[operatorMem.length-2]){
     operator = operatorMem[operatorMem.length-2];
@@ -251,9 +254,11 @@ function operate(a, b){
   lolightOperator(); // Remove CSS styles for highlighted operator.
 };
 
-// equals also works with the operate() function
-// since it's included in the operator list.
-// But loads the previous operator from memory.
+/* Equals also works with the operate() function
+since it's included in the operator list.
+But loads the previous operator from memory,
+instead of having it's own operator, e.g. eval().
+*/
 
 function equate(){
   memory = [];
@@ -288,8 +293,12 @@ window.addEventListener('keydown', function(e){
       clearIO();  // clear it the next time a number is entered
       result.value = null;
       }
-      inputOutput.innerText += e.key;
+      if (blinker.classList.contains('blinking-cursor')){
+      // This also never goes to memory or operator memory,
+      // because those can't take empty content or a period.
+      inputOutput.innerText += e.key; 
       checkIO();
+      };
     } else if (e.key.match(decimalRegex)){
         if (decimalSetting.value == 'unlocked'){
           inputOutput.innerText += e.key;
