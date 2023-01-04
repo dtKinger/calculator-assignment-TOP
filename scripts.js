@@ -228,10 +228,11 @@ operators.forEach(function (operator) {
 operators.forEach(function (operator) {
   operator.addEventListener('click', function(e) {
     unlockDecimal();
-    if (inputOutput.innerText != ''){
+    if (inputOutput.innerText != ''
+      && inputOutput.innerText != '.'){
       memory.push(parseFloat(inputOutput.innerText));
+      operatorMem.push(operator.getAttribute('id'));
     }
-    operatorMem.push(operator.getAttribute('id'));
     if (memory[memory.length-2] != undefined && memory[memory.length-1] != undefined){
       operate();
     } else {
