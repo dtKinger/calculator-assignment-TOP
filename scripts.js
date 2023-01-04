@@ -155,56 +155,6 @@ numkeys.forEach(function (numkey) {
   });
 });
 
- /* ========================= \
-|      NUMKEYS - KEYDOWN       |
- \ ========================= */
-
-// Use regex to filter what kind of key was pressed.
-const numbersRegex = /[0-9]/;
-const operatorsRegex = /[\+\=\/\*\-]/;
-const equalsRegex = "Enter";
-const decimalRegex = /\./;
-
-// What kind of key was pressed? Numkey, Operator, or Equals?
-window.addEventListener('keydown', function(e){
-  if (e.key.match(numbersRegex)){
-    if (result.value != null){ // If there is a result.value is on screen,
-      clearIO();  // clear it the next time a number is entered
-      result.value = null;
-    }
-    inputOutput.innerText += e.key;
-    checkIO();
-    } else if (e.key.match(decimalRegex)){
-        if (decimalSetting.value == 'unlocked'){
-          inputOutput.innerText += e.key;
-          checkIO();
-        }
-      decimalSetting.value = 'locked';
-      toggleDecimal();
-    } else if (e.key.match(operatorsRegex)
-    || e.key.match(equalsRegex)){
-      if (e.key.match(equalsRegex)){
-        e.preventDefault();
-      }
-      if (inputOutput.innerText != ''
-        && inputOutput.innerText != '.'){
-        memory.push(parseFloat(inputOutput.innerText));
-        operatorMem.push(e.key);
-        if (memory[memory.length-2] != undefined
-        && memory[memory.length-1] != undefined){
-          operate();
-        } else {
-          clearIO();
-          unlockDecimal();
-        }
-      }
-    }
-});
-
- /* ========================== \
-|    END OF NUMKEY-KEYDOWNS     |
- \ ========================== */
-
 
  /* ========================= \
 |          OPERATORS           |
@@ -318,4 +268,55 @@ equals.addEventListener('click', () => {
 
  /* ========================== \
 |        END OF OPERATORS       |
+ \ ========================== */
+
+
+ /* ========================= \
+|     KEYDOWNS: NUM + OPS      |
+ \ ========================= */
+
+// Use regex to filter what kind of key was pressed.
+const numbersRegex = /[0-9]/;
+const operatorsRegex = /[\+\=\/\*\-]/;
+const equalsRegex = "Enter";
+const decimalRegex = /\./;
+
+// What kind of key was pressed? Numkey, Operator, or Equals?
+window.addEventListener('keydown', function(e){
+  if (e.key.match(numbersRegex)){
+    if (result.value != null){ // If there is a result.value is on screen,
+      clearIO();  // clear it the next time a number is entered
+      result.value = null;
+      }
+      inputOutput.innerText += e.key;
+      checkIO();
+    } else if (e.key.match(decimalRegex)){
+        if (decimalSetting.value == 'unlocked'){
+          inputOutput.innerText += e.key;
+          checkIO();
+        }
+      decimalSetting.value = 'locked';
+      toggleDecimal();
+    } else if (e.key.match(operatorsRegex)
+    || e.key.match(equalsRegex)){
+      if (e.key.match(equalsRegex)){
+        e.preventDefault();
+      }
+      if (inputOutput.innerText != ''
+        && inputOutput.innerText != '.'){
+        memory.push(parseFloat(inputOutput.innerText));
+        operatorMem.push(e.key);
+        if (memory[memory.length-2] != undefined
+        && memory[memory.length-1] != undefined){
+          operate();
+        } else {
+          clearIO();
+          unlockDecimal();
+        }
+      }
+    }
+});
+
+ /* ========================== \
+|        END OF KEYDOWNS        |
  \ ========================== */
