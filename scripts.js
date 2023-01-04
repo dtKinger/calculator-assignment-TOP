@@ -172,6 +172,25 @@ function equate(){
 };
 
 
+function autoCalc(a){
+  a = parseFloat(memory[memory.length-1]);
+  if (operatorMem[operatorMem.length-1] != null){
+    operator = operatorMem[operatorMem.length-1];
+    if (operator == 'sqrt'){
+      result.value = Math.sqrt(a);
+    } else if (operator == 'exponent'){
+      result.value = a * a;
+    }
+  }
+
+  memory.push(parseFloat(result.value));
+  showResult();
+  checkIO(); // Keep the screen under 999,999,999
+  operator = null; //Pretty sure I don't need this. 
+  settleMemory(); // Recursive function to keep memory array down to length of 4.
+  lolightOperator(); 
+};
+
  /* ========================== \
 |  END OF GLOBAL DECLARATIONS   |
  \ ========================== */
