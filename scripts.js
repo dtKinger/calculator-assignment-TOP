@@ -169,8 +169,8 @@ const decimalRegex = /\./;
 // What kind of key was pressed? Numkey, Operator, or Equals?
 window.addEventListener('keydown', function(e){
   if (e.key.match(numbersRegex)){
-    if (result.value != null){
-      clearIO();  
+    if (result.value != null){ // If there is a result.value is on screen,
+      clearIO();  // clear it the next time a number is entered
       result.value = null;
     }
     inputOutput.innerText += e.key;
@@ -178,7 +178,6 @@ window.addEventListener('keydown', function(e){
     } else if (e.key.match(decimalRegex)){
       console.log(e.key);
       decimalSetting.value = 'locked';
-      toggleDecimal();
       inputOutput.innerText += e.key;
       checkIO();
     } else if (e.key.match(operatorsRegex)
@@ -190,15 +189,15 @@ window.addEventListener('keydown', function(e){
         && inputOutput.innerText != '.'){
         memory.push(parseFloat(inputOutput.innerText));
         operatorMem.push(e.key);
-      }
-      if (memory[memory.length-2] != undefined
+        if (memory[memory.length-2] != undefined
         && memory[memory.length-1] != undefined){
           operate();
-      } else {
-        clearIO();
-        unlockDecimal();
+        } else {
+          clearIO();
+          unlockDecimal();
+        }
       }
-  }
+    }
 });
 
  /* ========================== \
