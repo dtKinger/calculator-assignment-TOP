@@ -178,6 +178,7 @@ window.addEventListener('keydown', function(e){
     } else if (e.key.match(decimalRegex)){
       console.log(e.key);
       decimalSetting.value = 'locked';
+      toggleDecimal();
       inputOutput.innerText += e.key;
       checkIO();
     } else if (e.key.match(operatorsRegex)
