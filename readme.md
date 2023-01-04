@@ -4,4 +4,6 @@
 
 **[Use the Calculator here](https://dtkinger.github.io/calculator-assignment-TOP/)**. It's an older model, be gentle with it and don't forget to **turn it on!**
 
-**Return/Enter Key is under construction, please click or tap equals for now:D**
+## Unsupported things:
+* Backspace keypress to last 1 digit.
+* ESC key for AC (All Clear) button.
