@@ -6,5 +6,6 @@
 
 TO DO:
 1. Handle numbers divided by 0.
-2. Handle Keypresses for decimal and AC (esc)
+2. Add support for keypresses of AC (esc)
 3. Add support for backspace and -= properly from the IO.
+4. Clear memory on keypresses of = and Enter, just just clicking button.

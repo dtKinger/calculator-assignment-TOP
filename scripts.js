@@ -71,8 +71,10 @@ function memBlur(){
 
 // Stored is the most recent item commited to memory.
 function showStored(){
-  if (memory[memory.length-1] != null){
-  inputOutput.innerText = memory[memory.length-1];
+  if (memory[memory.length-2] != null){
+  inputOutput.innerText = memory[memory.length-2];
+  } else if (memory[memory.length-2] != null){
+    inputOutput.innerText = memory[memory.length-2];
   } else {
     inputOutput.innerText = '';
   }
