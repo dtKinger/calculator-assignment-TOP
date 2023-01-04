@@ -97,6 +97,27 @@ function checkIO(){
   }
 }
 
+function toggleDecimal(){
+  if (decimalSetting.value === 'locked'){
+    decimal.disabled = true;
+    decimal.classList.add('lock-decimal');
+
+  } else if (decimalSetting.value === 'unlocked'){
+    decimal.classList.remove('lock-decimal');
+    decimal.disabled = false;
+  }
+};
+
+function unlockDecimal(){
+  decimalSetting.value = 'unlocked';
+  toggleDecimal();
+};
+
+decimal.addEventListener('click', () => {
+  decimalSetting.value = 'locked';
+  toggleDecimal();
+});
+
  /* ========================== \
 |  END OF GLOBAL DECLARATIONS   |
  \ ========================== */
@@ -134,28 +155,6 @@ numkeys.forEach(function (numkey) {
   });
 });
 
-function toggleDecimal(){
-  if (decimalSetting.value === 'locked'){
-    decimal.disabled = true;
-    decimal.classList.add('lock-decimal');
-
-  } else if (decimalSetting.value === 'unlocked'){
-    decimal.classList.remove('lock-decimal');
-    decimal.disabled = false;
-  }
-};
-
-function unlockDecimal(){
-  decimalSetting.value = 'unlocked';
-  toggleDecimal();
-};
-
-decimal.addEventListener('click', () => {
-  decimalSetting.value = 'locked';
-  toggleDecimal();
-});
-
-
  /* ========================= \
 |      NUMKEYS - KEYDOWN       |
  \ ========================= */
@@ -176,11 +175,12 @@ window.addEventListener('keydown', function(e){
     inputOutput.innerText += e.key;
     checkIO();
     } else if (e.key.match(decimalRegex)){
-      console.log(e.key);
+        if (decimalSetting.value == 'unlocked'){
+          inputOutput.innerText += e.key;
+          checkIO();
+        }
       decimalSetting.value = 'locked';
       toggleDecimal();
-      inputOutput.innerText += e.key;
-      checkIO();
     } else if (e.key.match(operatorsRegex)
     || e.key.match(equalsRegex)){
       if (e.key.match(equalsRegex)){
@@ -202,7 +202,7 @@ window.addEventListener('keydown', function(e){
 });
 
  /* ========================== \
-|         END OF NUMKEYS        |
+|    END OF NUMKEY-KEYDOWNS     |
  \ ========================== */
 
 
@@ -315,10 +315,6 @@ function equate(){
 equals.addEventListener('click', () => {
   equate();
 });
-
-// Use regex to only allow numbers and . onto the screen. 
-
-
 
  /* ========================== \
 |        END OF OPERATORS       |
