@@ -52,7 +52,7 @@ function clearMemory(){
   unlockDecimal();
 };
 
-// Fun fact - first attempt at a recursive function.
+// Keep Memory array to length of 5.
 function settleMemory(){
   while (memory.length > 4){
     memory.shift();
@@ -80,6 +80,7 @@ function showStored(){
   }
 }
 
+
 // The Result of a calculation, use decimal if needed.
 function showResult(){
   if (result.value * 10 % 10 != 0){
@@ -88,6 +89,7 @@ function showResult(){
     inputOutput.innerText = result.value;
   }
 }
+
 
 // inputOutput Observer
 function checkIO(){
@@ -98,6 +100,7 @@ function checkIO(){
     showStored();
   }
 }
+
 
 function toggleDecimal(){
   if (decimalSetting.value === 'locked'){
@@ -110,15 +113,63 @@ function toggleDecimal(){
   }
 };
 
+
 function unlockDecimal(){
   decimalSetting.value = 'unlocked';
   toggleDecimal();
 };
 
-decimal.addEventListener('click', () => {
-  decimalSetting.value = 'locked';
-  toggleDecimal();
-});
+
+// OPERATE
+
+function operate(a, b){
+  a = parseFloat(memory[memory.length-2]);
+  b = parseFloat(memory[memory.length-1]);
+  /* ENABLE FOR DEV ONLY
+  console.log("result: " + result);
+  console.log("result.value: " + result.value);
+  console.log("operatorMem: " + operatorMem);
+  console.log("memory: " + memory);
+  console.log("inputOutput: " + inputOutput);
+  console.log("inputOutput.innerText: " + inputOutput.innerText);
+  */
+
+  if (operatorMem[operatorMem.length-1] != operatorMem[operatorMem.length-2]){
+    operator = operatorMem[operatorMem.length-2];
+  } else if (operatorMem[operatorMem.length-1] == operatorMem[operatorMem.length-2]){
+    operator = operatorMem[operatorMem.length-1];
+  };
+  if (operator == 'plus' || operator == '+'){
+    result.value = a + b;
+  } else if (operator == 'minus' || operator == '-'){
+    result.value = a - b;
+  } else if (operator == 'multiplies' || operator == '*'){
+    result.value = a * b;
+  } else if (operator == 'divides' || operator == '/'){
+    result.value = a / b;
+  }
+
+  memory.push(parseFloat(result.value));
+  showResult();
+  checkIO(); // Keep the screen under 999,999,999
+  operator = null; //Pretty sure I don't need this. 
+  settleMemory(); // Recursive function to keep memory array down to length of 4.
+  lolightOperator(); // Remove CSS styles for highlighted operator.
+};
+
+/* Equals also works with the operate() function
+since it's included in the operator list.
+But loads the previous operator from memory,
+instead of having it's own operator, e.g. eval().
+*/
+
+function equate(){
+  memory = [];
+  operatorMem = [];
+  lolightOperator();
+  unlockDecimal();
+};
+
 
  /* ========================== \
 |  END OF GLOBAL DECLARATIONS   |
@@ -157,6 +208,10 @@ numkeys.forEach(function (numkey) {
   });
 });
 
+decimal.addEventListener('click', () => {
+  decimalSetting.value = 'locked';
+  toggleDecimal();
+});
 
  /* ========================= \
 |          OPERATORS           |
@@ -218,56 +273,6 @@ function lolightOperator(){
  clear.addEventListener('click', () => {
   memBlur();
 });
-
-// OPERATE
-
-function operate(a, b){
-  a = parseFloat(memory[memory.length-2]);
-  b = parseFloat(memory[memory.length-1]);
-  /* ENABLE FOR DEV ONLY
-  console.log("result: " + result);
-  console.log("result.value: " + result.value);
-  console.log("operatorMem: " + operatorMem);
-  console.log("memory: " + memory);
-  console.log("inputOutput: " + inputOutput);
-  console.log("inputOutput.innerText: " + inputOutput.innerText);
-  */
-
-  if (operatorMem[operatorMem.length-1] != operatorMem[operatorMem.length-2]){
-    operator = operatorMem[operatorMem.length-2];
-  } else if (operatorMem[operatorMem.length-1] == operatorMem[operatorMem.length-2]){
-    operator = operatorMem[operatorMem.length-1];
-  };
-  if (operator == 'plus' || operator == '+'){
-    result.value = a + b;
-  } else if (operator == 'minus' || operator == '-'){
-    result.value = a - b;
-  } else if (operator == 'multiplies' || operator == '*'){
-    result.value = a * b;
-  } else if (operator == 'divides' || operator == '/'){
-    result.value = a / b;
-  }
-
-  memory.push(parseFloat(result.value));
-  showResult();
-  checkIO(); // Keep the screen under 999,999,999
-  operator = null; //Pretty sure I don't need this. 
-  settleMemory(); // Recursive function to keep memory array down to length of 4.
-  lolightOperator(); // Remove CSS styles for highlighted operator.
-};
-
-/* Equals also works with the operate() function
-since it's included in the operator list.
-But loads the previous operator from memory,
-instead of having it's own operator, e.g. eval().
-*/
-
-function equate(){
-  memory = [];
-  operatorMem = [];
-  lolightOperator();
-  unlockDecimal();
-};
 
 equals.addEventListener('click', () => {
   equate();
