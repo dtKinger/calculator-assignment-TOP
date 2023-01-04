@@ -18,11 +18,11 @@ body{
   box-sizing: border-box;
 }
 /* FOR DEV ONLY
+
 div{
   border: 1px solid red;
 }
- */
-
+*/
 
 ol, li {
   list-style: none;
@@ -84,7 +84,7 @@ button{
   gap: 8px;
   padding: 20px;
   width: 335px;
-  height: 480px;
+  height: 550px;
   margin: 35px 41px 20px 20px;
   background-color: rgb(107, 137, 187);
   color: rgb(56, 56, 56);
@@ -173,12 +173,12 @@ button{
   align-items: center;
 }
 
-.row-1, .row-2, .row-3, .row-4, .row-5 {
+.row-1, .row-2, .row-3, .row-4, .row-5, .row-6 {
   display: flex;
   gap: 6px;
 }
 
-.numkey, .operator, .equals, .btn-clear{
+.numkey, .operator, .equals, .btn-clear, .backspace{
   flex: 1;
   opacity: .925;
   color: ivory;
@@ -210,7 +210,15 @@ button{
   font-size: 24px;
 }
 
-.equals{
+.backspace {
+  flex: 2.5;
+  font-size: 24px;
+}
+
+.exponent, .sqrt {
+}
+
+.equals, .backspace{
 background-color: ivory;
 color:rgb(56, 56, 56);
 box-shadow: 1px 1px 1px 1px rgb(56, 56, 56)

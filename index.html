@@ -10,9 +10,11 @@
   <link rel="icon" href="favicon.png">
 </head>
 <body>
+  <!--
   <header>
     <h1>Calculator by <a target="_blank" href="https://github.com/dtKinger/">@dtKinger</a></h1>
   </header>
+  -->
   <main>
     <div id="calculator" class="calculator">
       <div class="power">
@@ -27,6 +29,11 @@
           <p id="io" class="io"></p><span id="blinker" class="cursor-hide">|</span><span><sup id="exponent"></sup></span>
         </div>
         <button id="btn-clear" class="btn btn-clear" ontouchstart="">AC</button>
+      </div>
+      <div id="row-6" class="row-6">
+        <button data-key="8" class="btn backspace" value="Backspace">Backspace</button>
+        <button class="btn operator exponent" value="exponent" style="font-size: 18px">x<sup>2</sup></button>
+        <button class="btn operator sqrt" value="sqrt">&radic;</button>
       </div>
       <div id="row-2" class="row-2">
         <button data-key="55" class="btn numkey" value="7" ontouchstart="">7</button>

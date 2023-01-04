@@ -295,6 +295,7 @@ const decimalRegex = /\./;
 
 // What kind of key was pressed? Numkey, Operator, or Equals?
 window.addEventListener('keydown', function(e){
+  // console.log(e.key); For dev only
   if (e.key.match(numbersRegex)){
     if (result.value != null){ // If there is a result.value is on screen,
       clearIO();  // clear it the next time a number is entered
