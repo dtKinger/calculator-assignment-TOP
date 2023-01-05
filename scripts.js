@@ -23,8 +23,9 @@ powerBtn.addEventListener('change', (e) =>{
 });
 
 function playClick(){
-  let click = document.getElementById('click');
-  click.play();
+  let clickSound = document.getElementById('click');
+  clickSound.currentTime = 0
+  clickSound.play();
 };
 
 /* ========================= \
