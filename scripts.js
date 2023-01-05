@@ -25,6 +25,7 @@ const inputOutput = document.getElementById('io'); // Paragraph tag inside Scree
 const exponentValue = document.getElementById('exponent');
 /// Operator buttons
 const clear = document.querySelector('.btn-clear');
+const escape = document.querySelector('.btn-clear');
 const equals = document.getElementById('equals');
 const decimal = document.getElementById('decimal');
 const autoCalcBtn = document.querySelectorAll('.auto-calc');
@@ -317,6 +318,8 @@ function lolightOperator(){
   memBlur();
 });
 
+// Equates two values without introducing a new operator.
+// I.e. use the most recent operator available.
 equals.addEventListener('click', () => {
   equate();
 });
@@ -336,6 +339,7 @@ const operatorsRegex = /[\+\=\/\*\-]/;
 const equalsRegex = /Enter$/;
 const backspaceRegex = /Backspace$/;
 const decimalRegex = /\./;
+const escapeRegex = /Escape$/;
 
 // What kind of key was pressed? Numkey, Operator, or Equals?
 window.addEventListener('keydown', function(e){
@@ -360,6 +364,8 @@ window.addEventListener('keydown', function(e){
       toggleDecimal();
     } else if (e.key.match(backspaceRegex)){
       doBackspace();
+    } else if (e.key.match(escapeRegex)){
+      memBlur();
     } else if (e.key.match(operatorsRegex)
     || e.key.match(equalsRegex)){
       if (e.key.match(equalsRegex)){
