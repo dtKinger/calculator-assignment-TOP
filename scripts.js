@@ -135,9 +135,10 @@ function operate(a, b){
   console.log("inputOutput: " + inputOutput);
   console.log("inputOutput.innerText: " + inputOutput.innerText);
   */
-
+ 
   if (operatorMem[operatorMem.length-1] != operatorMem[operatorMem.length-2]){
-    operator = operatorMem[operatorMem.length-2];
+    operator = operatorMem[operatorMem.length-2]; // Gives = This is key to letting =
+    // or Return operate with the previously stored operator
   } else if (operatorMem[operatorMem.length-1] == operatorMem[operatorMem.length-2]){
     operator = operatorMem[operatorMem.length-1];
   };
@@ -154,7 +155,7 @@ function operate(a, b){
   memory.push(parseFloat(result.value));
   showResult();
   checkIO(); // Keep the screen under 999,999,999
-  settleMemory(); // Recursive function to keep memory array down to length of 4.
+  settleMemory(); // Function to keep memory array down to length of 4.
   lolightOperator(); // Remove CSS styles for highlighted operator.
 };
 
@@ -165,8 +166,6 @@ instead of having it's own operator, e.g. eval().
 */
 
 function equate(){
-  // memory = [];
-  // operatorMem = [];
   lolightOperator();
   unlockDecimal();
 };
