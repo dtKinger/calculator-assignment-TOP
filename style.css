@@ -234,6 +234,9 @@ box-shadow: 1px 1px 1px 1px rgb(56, 56, 56)
     padding: 6px 10px;
   }
 
+  .calculator{
+    height: 500px;
+  }
   .screen {
     font-size: 1.5rem;
   }
