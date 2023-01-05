@@ -154,7 +154,6 @@ function operate(a, b){
   memory.push(parseFloat(result.value));
   showResult();
   checkIO(); // Keep the screen under 999,999,999
-  operator = null; //Pretty sure I don't need this. 
   settleMemory(); // Recursive function to keep memory array down to length of 4.
   lolightOperator(); // Remove CSS styles for highlighted operator.
 };
@@ -184,9 +183,8 @@ function autoCalc(a){
   memory.push(parseFloat(result.value));
   showResult();
   checkIO(); // Keep the screen under 999,999,999
-  operator = null; //Pretty sure I don't need this. 
-  settleMemory(); // Recursive function to keep memory array down to length of 4.
-  lolightOperator(); 
+  settleMemory(); // Keep memory array down to length of 5.
+  lolightOperator(); // Remove operator buttin highlight class.
 };
 
  /* ========================== \
