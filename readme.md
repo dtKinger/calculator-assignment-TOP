@@ -6,4 +6,4 @@
 
 ## Unsupported things:
 * Backspace keypress to last 1 digit.
-* ESC key for AC (All Clear) button.
+* **Highlight operators on keypresses**. 

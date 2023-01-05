@@ -214,7 +214,6 @@ button{
   font-size: 20px;
 }
 
-
 .exponent {
   font-size: 1.5rem;
 }
@@ -264,9 +263,3 @@ box-shadow: 1px 1px 1px 1px rgb(56, 56, 56)
     max-width: 60px;
   }
 }
-
-/* For use with exponent button
-.toggle-data{
-  display: none;
-}
-*/
