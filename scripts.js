@@ -4,6 +4,7 @@ powerBtn = document.getElementById('range');
 blinker = document.getElementById('blinker');
 
 powerBtn.addEventListener('change', (e) =>{
+  playClick();
   blinker.classList.toggle('blinking-cursor');
   blinker.classList.toggle('cursor-hide');
   screen.classList.toggle('backlight');
@@ -20,6 +21,11 @@ powerBtn.addEventListener('change', (e) =>{
   equals.classList.add('backlight--equals');
   clear.classList.add('backlight--operators');
 });
+
+function playClick(){
+  let click = document.getElementById('click');
+  click.play();
+};
 
 /* ========================= \
 |     GLOBAL DECLARATIONS      |
