@@ -206,7 +206,6 @@ button{
 
 .btn-clear{
   background-color: rgba(248, 104, 21, 0.9);
-  height: 72px;
   font-size: 24px;
 }
 
@@ -246,13 +245,13 @@ box-shadow: 1px 1px 1px 1px rgb(56, 56, 56)
 }
 
 @media screen and (max-width: 380px){
-  .btn-clear{
+  .exponent{
     max-width: 64.25px;
   }
 }
 
 @media screen and (max-width: 363px){
-  .btn-clear{
+  .exponent{
     max-width: 60px;
   }
 }

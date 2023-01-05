@@ -28,6 +28,7 @@ const clear = document.querySelector('.btn-clear');
 const equals = document.getElementById('equals');
 const decimal = document.getElementById('decimal');
 const autoCalcBtn = document.querySelectorAll('.auto-calc');
+const backspace = document.querySelector('#backspace')
 
 // INITIALIZE VARIABLES
 
@@ -231,6 +232,13 @@ numkeys.forEach(function (numkey) {
 decimal.addEventListener('click', () => {
   decimalSetting.value = 'locked';
   toggleDecimal();
+});
+
+backspace.addEventListener('click', () => {
+  if (inputOutput.innerText != ''){
+    let string = inputOutput.innerText;
+    inputOutput.innerText = string.substring(0, string.length-1)
+  }
 });
 
  /* ========================= \
