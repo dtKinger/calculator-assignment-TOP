@@ -187,6 +187,16 @@ function autoCalc(a){
   lolightOperator(); // Remove operator buttin highlight class.
 };
 
+function doBackspace(){
+  if (inputOutput.innerText != ''){
+    let string = inputOutput.innerText;
+    inputOutput.innerText = string.substring(0, string.length-1);
+    if (result.value != null){
+      result.value = string.substring(0, string.length-1);
+    }
+  }
+};
+
  /* ========================== \
 |  END OF GLOBAL DECLARATIONS   |
  \ ========================== */
@@ -230,10 +240,7 @@ decimal.addEventListener('click', () => {
 });
 
 backspace.addEventListener('click', () => {
-  if (inputOutput.innerText != ''){
-    let string = inputOutput.innerText;
-    inputOutput.innerText = string.substring(0, string.length-1)
-  }
+  doBackspace();
 });
 
  /* ========================= \
@@ -326,7 +333,8 @@ equals.addEventListener('click', () => {
 // Use regex to filter what kind of key was pressed.
 const numbersRegex = /[0-9]/;
 const operatorsRegex = /[\+\=\/\*\-]/;
-const equalsRegex = "Enter";
+const equalsRegex = /Enter$/;
+const backspaceRegex = /Backspace$/;
 const decimalRegex = /\./;
 
 // What kind of key was pressed? Numkey, Operator, or Equals?
@@ -350,6 +358,8 @@ window.addEventListener('keydown', function(e){
         }
       decimalSetting.value = 'locked';
       toggleDecimal();
+    } else if (e.key.match(backspaceRegex)){
+      doBackspace();
     } else if (e.key.match(operatorsRegex)
     || e.key.match(equalsRegex)){
       if (e.key.match(equalsRegex)){
