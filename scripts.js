@@ -175,15 +175,12 @@ function equate(){
 
 function autoCalc(a){
   a = parseFloat(memory[memory.length-1]);
-  if (operatorMem[operatorMem.length-1] != null){
-    operator = operatorMem[operatorMem.length-1];
+  operator = operatorMem[operatorMem.length-1];
     if (operator == 'sqrt'){
       result.value = Math.sqrt(a);
     } else if (operator == 'exponent'){
       result.value = a * a;
     }
-  }
-
   memory.push(parseFloat(result.value));
   showResult();
   checkIO(); // Keep the screen under 999,999,999
