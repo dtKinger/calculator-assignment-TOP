@@ -242,7 +242,7 @@ backspace.addEventListener('click', () => {
 });
 
  /* ========================= \
-|          OPERATORS           |
+|      OPERATORS - CLICKS      |
  \ ========================= */
 
  // For Calculation
