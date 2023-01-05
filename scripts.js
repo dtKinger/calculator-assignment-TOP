@@ -24,7 +24,7 @@ powerBtn.addEventListener('change', (e) =>{
 
 function playClick(){
   let clickSound = document.getElementById('click');
-  clickSound.currentTime = 0
+  clickSound.currentTime = 0;
   clickSound.play();
 };
 
@@ -159,9 +159,9 @@ function operate(a, b){
   */
  
   if (operatorMem[operatorMem.length-1] != operatorMem[operatorMem.length-2]){
-    operator = operatorMem[operatorMem.length-2]; // Gives = This is key to letting =
+    operator = operatorMem[operatorMem.length-2]; // This is key to letting '='
     // or Return operate with the previously stored operator
-  } else if (operatorMem[operatorMem.length-1] == operatorMem[operatorMem.length-2]){
+  } else {
     operator = operatorMem[operatorMem.length-1];
   };
   if (operator == 'plus' || operator == '+'){
@@ -177,7 +177,7 @@ function operate(a, b){
   memory.push(parseFloat(result.value));
   showResult();
   checkIO(); // Keep the screen under 999,999,999
-  settleMemory(); // Function to keep memory array down to length of 4.
+  settleMemory(); // Function to keep memory array down to length of 5.
   lolightOperator(); // Remove CSS styles for highlighted operator.
 
 };
