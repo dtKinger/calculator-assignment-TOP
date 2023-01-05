@@ -51,7 +51,7 @@ const backspace = document.querySelector('#backspace')
 
 // INITIALIZE VARIABLES
 
-let memory = []; // Stored and evaluate are mutable not like 
+let memory = []; 
 let result = { value: null };
 let operatorMem = [];
 let decimalSetting = { value: 'unlocked'};
@@ -104,12 +104,15 @@ function showStored(){
 
 // The Result of a calculation, use decimal if needed.
 function showResult(){
-  if (result.value * 10 % 10 != 0){
+  if (result.value == undefined){
+    inputOutput.innerText = 'undefined';
+  } else if (result.value * 10 % 10 != 0){
     inputOutput.innerText = (result.value).toFixed(2);
   } else {
     inputOutput.innerText = result.value;
   }
-}
+};
+
 
 
 // inputOutput Observer
@@ -168,14 +171,15 @@ function operate(a, b){
   } else if (operator == 'multiplies' || operator == '*'){
     result.value = a * b;
   } else if (operator == 'divides' || operator == '/'){
-    result.value = a / b;
+    if (b == 0 ? result.value = undefined : result.value = a / b);
   }
-
+  
   memory.push(parseFloat(result.value));
   showResult();
   checkIO(); // Keep the screen under 999,999,999
   settleMemory(); // Function to keep memory array down to length of 4.
   lolightOperator(); // Remove CSS styles for highlighted operator.
+
 };
 
 /* Equals also works with the operate() function

@@ -107,6 +107,9 @@ h1{
 }
 
 .brand{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex: 1;
   color: ivory;
   opacity: .75;
