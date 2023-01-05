@@ -22,3 +22,6 @@ Everything supported in Keyboard Presses as well as:
 ## Unsupported things:
 * **Highlight operators on keypresses**
 * **Handle numbers divided by 0**
+
+## Known issues:
+* **Having two or more values in memory then clicking multiple operators after another might produce unexpected results.**

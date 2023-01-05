@@ -7,6 +7,18 @@ powerBtn.addEventListener('change', (e) =>{
   blinker.classList.toggle('blinking-cursor');
   blinker.classList.toggle('cursor-hide');
   screen.classList.toggle('backlight');
+  numkeys.forEach(function (numkey){
+    numkey.classList.toggle('backlight--numkeys');
+  });
+  operators.forEach(function (operator){
+    operator.classList.toggle('backlight--operators');
+  });
+  autoCalcBtn.forEach(function (autoCalc){
+    autoCalc.classList.toggle('backlight--operators');
+  });
+  equals.classList.remove('backlight--operators');
+  equals.classList.add('backlight--equals');
+  clear.classList.add('backlight--operators');
 });
 
 /* ========================= \
@@ -294,21 +306,24 @@ autoCalcBtn.forEach(function (i){
 
 
 // For Operation Style
-for (let i = 0; i < operators.length; i++) {
-  operators[i].addEventListener("click", changeButton);
-}
+
 function changeButton(e) {
   for (let i = 0; i < oldActive.length; i++) {
     oldActive[i].classList.remove("active-op");
   }
   e.target.classList.add("active-op");
-}
+};
 
 function lolightOperator(){
   for (let i = 0; i < oldActive.length; i++) {
     oldActive[i].classList.remove("active-op");
   }
 };
+
+for (let i = 0; i < operators.length; i++) {
+  operators[i].addEventListener("click", changeButton);
+};
+
 
 
 // AC Clears Memory and Clears screen .io
@@ -342,6 +357,21 @@ const escapeRegex = /Escape$/;
 // What kind of key was pressed? Numkey, Operator, or Equals?
 window.addEventListener('keydown', function(e){
   // console.log(e.key); For dev only
+
+  if (e.key == "+"){
+    console.log(e.key);
+    document.getElementById('plus').classList.add('active-op');    
+  } else if (e.key == "-"){
+    let newActive = document.getElementById('minus');
+    newActive.classList.add('active-op');    
+  } else if (e.key == "*"){
+    let newActive = document.getElementById('multiplies');
+    newActive.classList.add('active-op');    
+  } else if (e.key == "/"){
+    let newActive = document.getElementById('divides');
+    newActive.classList.add('active-op');
+  }
+
   if (e.key.match(numbersRegex)){
     if (result.value != null){ // If there is a result.value is on screen,
       clearIO();  // clear it the next time a number is entered
@@ -365,7 +395,7 @@ window.addEventListener('keydown', function(e){
     } else if (e.key.match(escapeRegex)){
       memBlur();
     } else if (e.key.match(operatorsRegex)
-    || e.key.match(equalsRegex)){
+    || e.key.match(equalsRegex)){ 
       if (e.key.match(equalsRegex)){
         e.preventDefault();
       }
