@@ -25,7 +25,6 @@ const inputOutput = document.getElementById('io'); // Paragraph tag inside Scree
 const exponentValue = document.getElementById('exponent');
 /// Operator buttons
 const clear = document.querySelector('.btn-clear');
-const escape = document.querySelector('.btn-clear');
 const equals = document.getElementById('equals');
 const decimal = document.getElementById('decimal');
 const autoCalcBtn = document.querySelectorAll('.auto-calc');
