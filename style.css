@@ -131,7 +131,7 @@ h1{
   opacity: .9;
   border: 1px solid gold;
   border-radius: 10px;
-  transition: background-color 0.75s;
+  transition: background-color 0.50s;
   background-color:rgb(18, 18, 18);
   padding: 8px;
   font-size: 2rem;
@@ -183,7 +183,7 @@ h1{
 }
 
 .numkey{
-  transition: color 0.75s;
+  transition: color 0.20s;
   color: rgb(187, 187, 175);
   background-color: rgb(56, 56, 56);
 }
