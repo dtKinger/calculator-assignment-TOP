@@ -21,7 +21,9 @@ Everything supported in Keyboard Presses as well as:
 * **&radic;, Square root** | Find the square root of current value.
 
 ## Unsupported things:
-* **Highlight operators on keypresses**
+* **Scientific notation**
+* **Values over 1 Billion**
+* **Chaning operator mid-calculation**
 
 ## Known issues:
 * **Having two or more values in memory then clicking multiple operators after another might produce unexpected results.**

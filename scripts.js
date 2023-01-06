@@ -1,47 +1,21 @@
-// Power button fun
-
-powerBtn = document.getElementById('range');
-blinker = document.getElementById('blinker');
-
-powerBtn.addEventListener('change', (e) =>{
-  playClick();
-  blinker.classList.toggle('blinking-cursor');
-  blinker.classList.toggle('cursor-hide');
-  screen.classList.toggle('backlight');
-  numkeys.forEach(function (numkey){
-    numkey.classList.toggle('backlight--numkeys');
-  });
-  operators.forEach(function (operator){
-    operator.classList.toggle('backlight--operators');
-  });
-  autoCalcBtn.forEach(function (autoCalc){
-    autoCalc.classList.toggle('backlight--operators');
-  });
-  equals.classList.remove('backlight--operators');
-  equals.classList.add('backlight--equals');
-  clear.classList.add('backlight--operators');
-});
-
-function playClick(){
-  let clickSound = document.getElementById('click');
-  clickSound.currentTime = 0;
-  clickSound.play();
-};
-
 /* ========================= \
 |     GLOBAL DECLARATIONS      |
  \ ========================= */
 
 // GETS + SELECTORS
 
+const powerBtn = document.getElementById('range');
+const blinker = document.getElementById('blinker');
 const screen = document.getElementById('screen');
+const inputOutput = document.getElementById('io'); // Paragraph tag inside Screen
 
 /// Groups
 const numkeys = document.querySelectorAll('.numkey'); // All number imput keys and the decimal
 const operators = document.querySelectorAll('.operator'); // All operators: =, +, -, x, /
 let oldActive = document.getElementsByClassName("active-op");
-const inputOutput = document.getElementById('io'); // Paragraph tag inside Screen
-const exponentValue = document.getElementById('exponent');
+
+// const exponentValue = document.getElementById('exponent'); // For use with Scientific notation.
+
 /// Operator buttons
 const clear = document.querySelector('.btn-clear');
 const equals = document.getElementById('equals');
@@ -58,6 +32,12 @@ let decimalSetting = { value: 'unlocked'};
 
 // FUNCTIONS
 
+function playClick(){
+  let powerSound = document.getElementById('click');
+  powerSound.currentTime = 0;
+  powerSound.play();
+};
+
 function clearIO(){
   inputOutput.innerText = '';
   lolightOperator();
@@ -73,7 +53,7 @@ function clearMemory(){
   unlockDecimal();
 };
 
-// Keep Memory array to length of 5.
+// Keep Memory arrays to length of 5.
 function settleMemory(){
   while (memory.length > 4){
     memory.shift();
@@ -112,7 +92,6 @@ function showResult(){
     inputOutput.innerText = result.value;
   }
 };
-
 
 
 // inputOutput Observer
@@ -224,6 +203,33 @@ function doBackspace(){
  \ ========================== */
 
 
+ /* ========================== \
+|       POWER UP BEHAVIOUR      |
+ \ ========================== */
+
+powerBtn.addEventListener('change', (e) =>{
+  playClick();
+  blinker.classList.toggle('blinking-cursor');
+  blinker.classList.toggle('cursor-hide');
+  screen.classList.toggle('backlight');
+  numkeys.forEach(function (numkey){
+    numkey.classList.toggle('backlight--numkeys');
+  });
+  operators.forEach(function (operator){
+    operator.classList.toggle('backlight--operators');
+  });
+  autoCalcBtn.forEach(function (autoCalc){
+    autoCalc.classList.toggle('backlight--operators');
+  });
+  equals.classList.remove('backlight--operators'); // equals is an operator class but styled differently
+  equals.classList.add('backlight--equals');
+  clear.classList.add('backlight--operators');
+});
+
+ /* ========================== \
+|   END OF POWER UP BEHAVIOUR   |
+ \ ========================== */
+
 
  /* ========================= \
 |       NUMKEYS - CLICKS       |
@@ -302,21 +308,22 @@ operators.forEach(function (operator) {
   });
 });
 
-// Auto-calculate for Exponent and Square root.
+// Auto-calculate buttons for Exponent and Square root.
+// I'd call them function buttons but... 
 
-autoCalcBtn.forEach(function (i){
-  i.addEventListener('click', () => {
+autoCalcBtn.forEach(function (btn){
+  btn.addEventListener('click', () => {
     if (inputOutput.innerText != ''
     && inputOutput.innerText != '.'){
       memory.push(parseFloat(inputOutput.innerText));
-      operatorMem.push(i.getAttribute('id'));
+      operatorMem.push(btn.getAttribute('id'));
     }
     autoCalc();
   });
 });
 
 
-// For Operation Style
+// For Operator Buttons Style
 
 function changeButton(e) {
   for (let i = 0; i < oldActive.length; i++) {
@@ -324,7 +331,6 @@ function changeButton(e) {
   }
   e.target.classList.add("active-op");
 };
-
 
 // Used in operate() to remove any active class
 function lolightOperator(){
@@ -336,7 +342,6 @@ function lolightOperator(){
 for (let i = 0; i < operators.length; i++) {
   operators[i].addEventListener("click", changeButton);
 };
-
 
 
 // AC Clears Memory and Clears screen .io
@@ -371,7 +376,8 @@ const escapeRegex = /Escape$/;
 // Working but when calc is powered on, I have to click twice
 // and it becomes buggy?
 
-  // HMM, where does this logic belong?
+// Use keypress instead of keydown since there
+// appeared to be a conflict.
 window.addEventListener('keypress', function(e) {
   if (e.key == '+'){
     lolightOperator();
