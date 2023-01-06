@@ -29,6 +29,7 @@ let memory = [];
 let result = { value: null };
 let operatorMem = [];
 let decimalSetting = { value: 'unlocked'};
+let recentlyDeleted = [];
 
 // FUNCTIONS
 
@@ -49,6 +50,7 @@ function clearMemory(){
   memory = [];
   result.value = null;
   operatorMem = [];
+  recentlyDeleted = [];
   lolightOperator();
   unlockDecimal();
 };
@@ -191,10 +193,18 @@ function autoCalc(a){
 function doBackspace(){
   if (inputOutput.innerText != ''){
     let string = inputOutput.innerText;
+    recentlyDeleted.push(string.slice(-1));
     inputOutput.innerText = string.substring(0, string.length-1);
     if (result.value != null){
       result.value = string.substring(0, string.length-1);
     }
+    checkDeleted();
+  }
+};
+
+function checkDeleted(){
+  if (recentlyDeleted[recentlyDeleted.length-1] == "."){
+    unlockDecimal();
   }
 };
 
