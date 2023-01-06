@@ -325,6 +325,28 @@ function changeButton(e) {
   e.target.classList.add("active-op");
 };
 
+function changeButtonPress(){
+  for (let i = 0; i < oldActive.length; i++) {
+    oldActive[i].classList.remove("active-op");
+  }
+};
+
+function highlightPress(e){
+  if (e.key == 'Shift'){
+    e.preventDefault();
+  }
+  if (e.key == '+'){
+    document.getElementById('plus').classList.add('active-op');
+  } else if (e.key == '-'){
+    document.getElementById('minus').classList.add('active-op');
+  } else if (e.key == '*'){
+    document.getElementById('multiplies').classList.add('active-op');
+  } else if (e.key == '/'){
+    document.getElementById('divides').classList.add('active-op');
+  }
+};
+
+// Used in operate() to remove any active class
 function lolightOperator(){
   for (let i = 0; i < oldActive.length; i++) {
     oldActive[i].classList.remove("active-op");
@@ -360,28 +382,25 @@ equals.addEventListener('click', () => {
 // Use regex to filter what kind of key was pressed.
 const numbersRegex = /[0-9]/;
 const operatorsRegex = /[\+\=\/\*\-]/;
-const equalsRegex = /Enter$/;
+const equalsRegex = /Enter$/; // expand this to have Enter and = maybe???
 const backspaceRegex = /Backspace$/;
 const decimalRegex = /\./;
 const escapeRegex = /Escape$/;
+// const plusRegex = /\+/;
+
+
+document.addEventListener('keydown', function(e){
+  if (e.key.match(operatorsRegex)
+    && e.key.match(equalsRegex)){
+    console.log(e.key);
+    changeButtonPress(); // Remove oldActive class 'active-op'
+    highlightPress(); // highlight the operator
+  };
+})
 
 // What kind of key was pressed? Numkey, Operator, or Equals?
 window.addEventListener('keydown', function(e){
   // console.log(e.key); For dev only
-
-  if (e.key == "+"){
-    console.log(e.key);
-    document.getElementById('plus').classList.add('active-op');    
-  } else if (e.key == "-"){
-    let newActive = document.getElementById('minus');
-    newActive.classList.add('active-op');    
-  } else if (e.key == "*"){
-    let newActive = document.getElementById('multiplies');
-    newActive.classList.add('active-op');    
-  } else if (e.key == "/"){
-    let newActive = document.getElementById('divides');
-    newActive.classList.add('active-op');
-  }
 
   if (e.key.match(numbersRegex)){
     if (result.value != null){ // If there is a result.value is on screen,
@@ -406,10 +425,10 @@ window.addEventListener('keydown', function(e){
     } else if (e.key.match(escapeRegex)){
       memBlur();
     } else if (e.key.match(operatorsRegex)
-    || e.key.match(equalsRegex)){ 
+    || e.key.match(equalsRegex)){
       if (e.key.match(equalsRegex)){
         e.preventDefault();
-      }
+      } 
       if (inputOutput.innerText != ''
         && inputOutput.innerText != '.'){
         memory.push(parseFloat(inputOutput.innerText));
