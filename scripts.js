@@ -157,8 +157,14 @@ function operate(a, b){
   } else if (operator == 'divides' || operator == '/'){
     if (b == 0 ? result.value = undefined : result.value = a / b);
   }
-  
+
   memory.push(parseFloat(result.value));
+  // Handle decimal
+  if ((result.value).toString().includes('.')){
+    decimalSetting.value = 'locked';
+    toggleDecimal();
+  };
+
   showResult();
   checkIO(); // Keep the screen under 999,999,999
   settleMemory(); // Function to keep memory array down to length of 5.
@@ -364,7 +370,7 @@ for (let i = 0; i < operators.length; i++) {
 });
 
 // Equates two values without introducing a new operator.
-// I.e. use the most recent operator available.
+// I.e. use the 2nd-most recent operator available.
 equals.addEventListener('click', () => {
   equate();
 });
@@ -385,13 +391,9 @@ const equalsRegex = /Enter$/; // expand this to have Enter and = maybe???
 const backspaceRegex = /Backspace$/;
 const decimalRegex = /\./;
 const escapeRegex = /Escape$/;
-// const plusRegex = /\+/;
 
-// Working but when calc is powered on, I have to click twice
-// and it becomes buggy?
-
-// Use keypress instead of keydown since there
-// appeared to be a conflict.
+// Use keypress for operator styles instead
+// of keydown since there appeared to be a conflict.
 window.addEventListener('keypress', function(e) {
   if (e.key == '+'){
     lolightOperator();
@@ -410,12 +412,12 @@ window.addEventListener('keypress', function(e) {
 
 // What kind of key was pressed? Numkey, Operator, or Equals?
 window.addEventListener('keydown', function(e){
-  // console.log(e.key); For dev only
   if (e.key.match(numbersRegex)){
     if (result.value != null){ // If there is a result.value is on screen,
       clearIO();  // clear it the next time a number is entered
       result.value = null;
       }
+    // If the power's on, accept inputs to screen.
     if (blinker.classList.contains('blinking-cursor')){
       // This also never goes to memory or operator memory,
       // because those can't take empty content or a period.
