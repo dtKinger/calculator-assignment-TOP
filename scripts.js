@@ -63,6 +63,9 @@ function settleMemory(){
   while (operatorMem.length > 4){
     operatorMem.shift();
   }
+  while (recentlyDeleted.length > 4){
+    recentlyDeleted.shift();
+  }
 };
 
 
@@ -199,6 +202,7 @@ function doBackspace(){
       result.value = string.substring(0, string.length-1);
     }
     checkDeleted();
+    settleMemory();
   }
 };
 
