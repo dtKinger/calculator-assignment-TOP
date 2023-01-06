@@ -127,6 +127,12 @@ function unlockDecimal(){
   toggleDecimal();
 };
 
+function decimalCheckResult(){
+  if ((result.value).toString().includes('.')){
+    decimalSetting.value = 'locked';
+    toggleDecimal();
+  };
+};
 
 // OPERATE
 
@@ -160,10 +166,7 @@ function operate(a, b){
 
   memory.push(parseFloat(result.value));
   // Handle decimal
-  if ((result.value).toString().includes('.')){
-    decimalSetting.value = 'locked';
-    toggleDecimal();
-  };
+  decimalCheckResult();
 
   showResult();
   checkIO(); // Keep the screen under 999,999,999
@@ -321,6 +324,7 @@ operators.forEach(function (operator) {
     }
     if (memory[memory.length-2] != undefined && memory[memory.length-1] != undefined){
       operate();
+      unlockDecimal();
     } else {
       clearIO();
       unlockDecimal();
@@ -407,7 +411,11 @@ window.addEventListener('keypress', function(e) {
   } else if (e.key == '/'){
     lolightOperator();
     document.getElementById('divides').classList.add('active-op');
-  };
+  } else if (e.key == '=' || e.key == 'Enter'){
+    equate();
+    decimalCheckResult();
+  }
+  ;
 });
 
 // What kind of key was pressed? Numkey, Operator, or Equals?
