@@ -325,26 +325,6 @@ function changeButton(e) {
   e.target.classList.add("active-op");
 };
 
-function changeButtonPress(){
-  for (let i = 0; i < oldActive.length; i++) {
-    oldActive[i].classList.remove("active-op");
-  }
-};
-
-function highlightPress(e){
-  if (e.key == 'Shift'){
-    e.preventDefault();
-  }
-  if (e.key == '+'){
-    document.getElementById('plus').classList.add('active-op');
-  } else if (e.key == '-'){
-    document.getElementById('minus').classList.add('active-op');
-  } else if (e.key == '*'){
-    document.getElementById('multiplies').classList.add('active-op');
-  } else if (e.key == '/'){
-    document.getElementById('divides').classList.add('active-op');
-  }
-};
 
 // Used in operate() to remove any active class
 function lolightOperator(){
@@ -388,60 +368,67 @@ const decimalRegex = /\./;
 const escapeRegex = /Escape$/;
 // const plusRegex = /\+/;
 
+// Working but when calc is powered on, I have to click twice
+// and it becomes buggy?
 
-document.addEventListener('keydown', function(e){
-  if (e.key.match(operatorsRegex)
-    && e.key.match(equalsRegex)){
-    console.log(e.key);
-    changeButtonPress(); // Remove oldActive class 'active-op'
-    highlightPress(); // highlight the operator
+  // HMM, where does this logic belong?
+window.addEventListener('keypress', function(e) {
+  if (e.key == '+'){
+    lolightOperator();
+    document.getElementById('plus').classList.add('active-op');
+  } else if (e.key == '-'){
+    lolightOperator();
+    document.getElementById('minus').classList.add('active-op');
+  } else if (e.key == '*'){
+    lolightOperator();
+    document.getElementById('multiplies').classList.add('active-op');
+  } else if (e.key == '/'){
+    lolightOperator();
+    document.getElementById('divides').classList.add('active-op');
   };
-})
+});
 
 // What kind of key was pressed? Numkey, Operator, or Equals?
 window.addEventListener('keydown', function(e){
   // console.log(e.key); For dev only
-
   if (e.key.match(numbersRegex)){
     if (result.value != null){ // If there is a result.value is on screen,
       clearIO();  // clear it the next time a number is entered
       result.value = null;
       }
-      if (blinker.classList.contains('blinking-cursor')){
+    if (blinker.classList.contains('blinking-cursor')){
       // This also never goes to memory or operator memory,
       // because those can't take empty content or a period.
       inputOutput.innerText += e.key; 
       checkIO();
-      };
-    } else if (e.key.match(decimalRegex)){
-        if (decimalSetting.value == 'unlocked'){
-          inputOutput.innerText += e.key;
-          checkIO();
-        }
-      decimalSetting.value = 'locked';
-      toggleDecimal();
-    } else if (e.key.match(backspaceRegex)){
-      doBackspace();
-    } else if (e.key.match(escapeRegex)){
-      memBlur();
-    } else if (e.key.match(operatorsRegex)
+    };
+  } else if (e.key.match(decimalRegex)){
+    if (decimalSetting.value == 'unlocked'){
+      inputOutput.innerText += e.key;
+      checkIO();
+    }
+    decimalSetting.value = 'locked';
+    toggleDecimal();
+  } else if (e.key.match(backspaceRegex)){
+    doBackspace();
+  } else if (e.key.match(escapeRegex)){
+    memBlur();
+  } else if (e.key.match(operatorsRegex)
     || e.key.match(equalsRegex)){
-      if (e.key.match(equalsRegex)){
-        e.preventDefault();
-      } 
-      if (inputOutput.innerText != ''
-        && inputOutput.innerText != '.'){
-        memory.push(parseFloat(inputOutput.innerText));
-        operatorMem.push(e.key);
-        if (memory[memory.length-2] != undefined
-        && memory[memory.length-1] != undefined){
-          operate();
-        } else {
-          clearIO();
-          unlockDecimal();
-        }
+    if (e.key.match(equalsRegex)){ e.preventDefault()};
+    if (inputOutput.innerText != ''
+      && inputOutput.innerText != '.'){
+      memory.push(parseFloat(inputOutput.innerText));
+      operatorMem.push(e.key);
+      if (memory[memory.length-2] != undefined
+      && memory[memory.length-1] != undefined){
+        operate();
+      } else {
+        clearIO();
+        unlockDecimal();
       }
     }
+  };
 });
 
  /* ========================== \
