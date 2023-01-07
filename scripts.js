@@ -139,14 +139,6 @@ function decimalCheckResult(){
 function operate(a, b){
   a = parseFloat(memory[memory.length-2]);
   b = parseFloat(memory[memory.length-1]);
-  /* ENABLE FOR DEV ONLY
-  console.log("result: " + result);
-  console.log("result.value: " + result.value);
-  console.log("operatorMem: " + operatorMem);
-  console.log("memory: " + memory);
-  console.log("inputOutput: " + inputOutput);
-  console.log("inputOutput.innerText: " + inputOutput.innerText);
-  */
  
   if (operatorMem[operatorMem.length-1] != operatorMem[operatorMem.length-2]){
     operator = operatorMem[operatorMem.length-2]; // This is key to letting '='
@@ -392,9 +384,6 @@ equals.addEventListener('click', () => {
 const numbersRegex = /[0-9]/;
 const operatorsRegex = /[\+\=\/\*\-]/;
 const equalsRegex = /Enter$/; // expand this to have Enter and = maybe???
-const backspaceRegex = /Backspace$/;
-const decimalRegex = /\./;
-const escapeRegex = /Escape$/;
 
 // Use keypress for operator styles instead
 // of keydown since there appeared to be a conflict.
@@ -432,16 +421,16 @@ window.addEventListener('keydown', function(e){
       inputOutput.innerText += e.key; 
       checkIO();
     };
-  } else if (e.key.match(decimalRegex)){
+  } else if (e.key == '.'){
     if (decimalSetting.value == 'unlocked'){
       inputOutput.innerText += e.key;
       checkIO();
     }
     decimalSetting.value = 'locked';
     toggleDecimal();
-  } else if (e.key.match(backspaceRegex)){
+  } else if (e.key == 'Backspace'){
     doBackspace();
-  } else if (e.key.match(escapeRegex)){
+  } else if (e.key == 'Escape'){
     memBlur();
   } else if (e.key.match(operatorsRegex)
     || e.key.match(equalsRegex)){
