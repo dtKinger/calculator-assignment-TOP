@@ -393,23 +393,24 @@ const operatorsRegex = /[\+\=\/\*\-]/;
 // Use keypress for operator styles instead
 // of keydown since there appeared to be a conflict.
 window.addEventListener('keypress', function(e) {
-  if (e.key == '+'){
-    lolightOperator();
-    document.getElementById('plus').classList.add('active-op');
-  } else if (e.key == '-'){
-    lolightOperator();
-    document.getElementById('minus').classList.add('active-op');
-  } else if (e.key == '*'){
-    lolightOperator();
-    document.getElementById('multiplies').classList.add('active-op');
-  } else if (e.key == '/'){
-    lolightOperator();
-    document.getElementById('divides').classList.add('active-op');
-  } else if (e.key == '=' || e.key == 'Enter'){
-    equate();
-    decimalCheckResult();
+  if (blinker.classList.contains('blinking-cursor')){ // if powered on.
+    if (e.key == '+'){
+      lolightOperator();
+      document.getElementById('plus').classList.add('active-op');
+    } else if (e.key == '-'){
+      lolightOperator();
+      document.getElementById('minus').classList.add('active-op');
+    } else if (e.key == '*'){
+      lolightOperator();
+      document.getElementById('multiplies').classList.add('active-op');
+    } else if (e.key == '/'){
+      lolightOperator();
+      document.getElementById('divides').classList.add('active-op');
+    } else if (e.key == '=' || e.key == 'Enter'){
+      equate();
+      decimalCheckResult();
+    };
   }
-  ;
 });
 
 // What kind of key was pressed? Numkey, Operator, or Equals?
@@ -418,7 +419,7 @@ window.addEventListener('keydown', function(e){
     if (result.value != null){ // If there is a result.value is on screen,
       clearIO();  // clear it the next time a number is entered
       result.value = null;
-      }
+      };
     // If the power's on, accept inputs to screen.
     if (blinker.classList.contains('blinking-cursor')){
       // This also never goes to memory or operator memory,
