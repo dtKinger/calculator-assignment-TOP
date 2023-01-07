@@ -57,7 +57,7 @@ function clearMemory(){
 
 // Keep Memory arrays to length of 5.
 function settleMemory(){
-  while (memory.length 5){
+  while (memory.length > 5){
     memory.shift();
   }
   while (operatorMem.length > 5){
