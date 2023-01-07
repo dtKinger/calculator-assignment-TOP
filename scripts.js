@@ -159,7 +159,6 @@ function operate(a, b){
   memory.push(parseFloat(result.value));
   // Handle decimal
   decimalCheckResult();
-
   showResult();
   checkIO(); // Keep the screen under 999,999,999
   settleMemory(); // Function to keep memory array down to length of 5.
@@ -188,6 +187,7 @@ function autoCalc(a){
       result.value = a * a;
     }
   memory.push(parseFloat(result.value));
+  decimalCheckResult();
   showResult();
   checkIO(); // Keep the screen under 999,999,999
   settleMemory(); // Keep memory array down to length of 5.
@@ -369,6 +369,7 @@ for (let i = 0; i < operators.length; i++) {
 // I.e. use the 2nd-most recent operator available.
 equals.addEventListener('click', () => {
   equate();
+  decimalCheckResult();
 });
 
  /* ========================== \
