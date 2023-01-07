@@ -23,7 +23,7 @@ Everything supported in Keyboard Presses as well as:
 ## Unsupported things:
 * **Scientific notation**
 * **Values over 1 Billion**
-* **Chaning operator mid-calculation**
+* **Chaning operator mid-calculation without performing an operation**
 
 ## Known issues:
 * **Having two or more values in memory then clicking multiple operators after another might produce unexpected results.**
