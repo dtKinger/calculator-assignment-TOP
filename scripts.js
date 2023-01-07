@@ -194,6 +194,21 @@ function autoCalc(a){
   lolightOperator(); // Remove operator buttin highlight class.
 };
 
+
+function changeButton(e) {
+  for (let i = 0; i < oldActive.length; i++) {
+    oldActive[i].classList.remove("active-op");
+  }
+  e.target.classList.add("active-op");
+};
+
+// Used in operate() to remove any active class
+function lolightOperator(){
+  for (let i = 0; i < oldActive.length; i++) {
+    oldActive[i].classList.remove("active-op");
+  }
+};
+
 function doBackspace(){
   if (inputOutput.innerText != ''){
     let string = inputOutput.innerText;
@@ -340,21 +355,6 @@ autoCalcBtn.forEach(function (btn){
 
 
 // For Operator Buttons Style
-
-function changeButton(e) {
-  for (let i = 0; i < oldActive.length; i++) {
-    oldActive[i].classList.remove("active-op");
-  }
-  e.target.classList.add("active-op");
-};
-
-// Used in operate() to remove any active class
-function lolightOperator(){
-  for (let i = 0; i < oldActive.length; i++) {
-    oldActive[i].classList.remove("active-op");
-  }
-};
-
 for (let i = 0; i < operators.length; i++) {
   operators[i].addEventListener("click", changeButton);
 };
