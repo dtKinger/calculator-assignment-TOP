@@ -301,6 +301,10 @@ backspace.addEventListener('click', () => {
   doBackspace();
 });
 
+ /* ========================== \
+|         END OF NUMKEYS        |
+ \ ========================== */
+
  /* ========================= \
 |      OPERATORS - CLICKS      |
  \ ========================= */
@@ -384,7 +388,7 @@ equals.addEventListener('click', () => {
 // Use regex to filter what kind of key was pressed.
 const numbersRegex = /[0-9]/;
 const operatorsRegex = /[\+\=\/\*\-]/;
-const equalsRegex = /Enter$/; // expand this to have Enter and = maybe???
+// const equalsRegex = /Enter$/; 
 
 // Use keypress for operator styles instead
 // of keydown since there appeared to be a conflict.
@@ -434,8 +438,8 @@ window.addEventListener('keydown', function(e){
   } else if (e.key == 'Escape'){
     memBlur();
   } else if (e.key.match(operatorsRegex)
-    || e.key.match(equalsRegex)){
-    if (e.key.match(equalsRegex)){ e.preventDefault()};
+    || e.key == 'Enter'){
+    if (e.key == 'Enter'){ e.preventDefault()};
     if (inputOutput.innerText != ''
       && inputOutput.innerText != '.'){
       memory.push(parseFloat(inputOutput.innerText));
