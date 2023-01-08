@@ -21,9 +21,15 @@ body{
   flex-direction: column;
 }
 /* FOR DEV ONLY
-
-
 div{
+  border: 1px solid red;
+}
+
+main {
+  border: 1px solid red;
+}
+
+footer {
   border: 1px solid red;
 }
 */
