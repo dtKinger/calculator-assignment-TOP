@@ -11,7 +11,7 @@
 * **+, -, \*, /** | Plus, minus, multiply, divide
 * **All numkeys**
 * **Decimal key** | Can only be entered once per screen.
-* **Values <= 1 billion.** | Throws an error when display would exceed 999,999,999 and loads most recent value from memory.
+* **Values < 1 billion.** | Throws an error when display would exceed 999,999,999 and loads most recent value from memory.
 * **Handles edge cases like dividing by 0**.
 
 ### Clicks and Taps
@@ -23,7 +23,7 @@ Everything supported in Keyboard Presses as well as:
 ## Unsupported things:
 * **Scientific notation**
 * **Values over 1 Billion**
-* **Chaning operator mid-calculation without performing an operation**
+* **Changing operator mid-calculation without performing an operation**
 
 ## Known issues:
 * **Having two or more values in memory then clicking multiple operators after another might produce unexpected results.**
