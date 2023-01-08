@@ -16,6 +16,9 @@ body{
   font-size: 18px;
   background-color: ivory;
   box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 /* FOR DEV ONLY
 
@@ -54,6 +57,7 @@ header a, a:hover, a:visited, a:active{
 footer{
   justify-content: space-between;
   align-items: center;
+  margin-top: auto;
 }
 
 footer a, a:hover, a:visited, a:active{
