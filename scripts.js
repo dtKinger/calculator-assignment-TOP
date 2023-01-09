@@ -392,8 +392,10 @@ const operatorsRegex = /[\+\=\/\*\-]/;
 
 // Use keypress for operator styles instead
 // of keydown since there appeared to be a conflict.
+
 window.addEventListener('keypress', function(e) {
   if (blinker.classList.contains('blinking-cursor')){ // if powered on.
+
     if (e.key == '+'){
       lolightOperator();
       document.getElementById('plus').classList.add('active-op');
@@ -411,6 +413,26 @@ window.addEventListener('keypress', function(e) {
       decimalCheckResult();
     };
   }
+});
+
+// Animate all button presses from keypresses
+window.addEventListener('keydown', function(e){
+  const button = document.querySelector(`button[data-key="${e.key}"]`);
+  if (e.key == 'Enter'){
+    const enter = document.getElementById('equals');
+    enter.classList.add('pressed');
+  };
+  if (!button) return; // Kill the process
+  button.classList.add('pressed');
+});
+window.addEventListener('keyup', function(e){
+  const button = document.querySelector(`button[data-key="${e.key}"]`)
+  if (e.key == 'Enter'){
+    const enter = document.getElementById('equals');
+    enter.classList.remove('pressed');
+  };
+  if (!button) return; // Kill the process
+  button.classList.remove('pressed');
 });
 
 // What kind of key was pressed? Numkey, Operator, or Equals?

@@ -196,7 +196,6 @@ h1{
 }
 
 .numkey{
-  transition: color 0.20s;
   color: rgb(187, 187, 175);
   background-color: rgb(56, 56, 56);
 }
@@ -236,6 +235,10 @@ box-shadow: 1px 1px 1px 1px rgb(56, 56, 56)
 .lock-decimal{
   transform: scale (0.9);
   background-color: gray;
+}
+
+.pressed{
+  transform: scale(0.9);
 }
 
 @media screen and (max-width: 400px){

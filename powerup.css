@@ -26,19 +26,16 @@
 }
 
 .backlight--numkeys {
-  transition: ease-in 0.20s;
   color: ivory;
   text-shadow: 0 0 8px gold;
 }
 
 .backlight--operators {
-  transition: color ease-in 0.20s;
   color: ivory;
   text-shadow: 0 0 6px gold;
 }
 
 .backlight--equals {
-  transition: ease-in 0.20s;
   color:rgb(56, 56, 56);
 }
 
